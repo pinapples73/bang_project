@@ -1,28 +1,23 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="html">
+  <div id='game_window'>
+			<h3>Load Game</h3>
+			<game></game>
+	</div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Game from "./components/Game";
+import DragImage from './components/DragImage.vue';
+import DragHtml from './components/DragHtml.vue';
+import DropEffects from './components/DropEffects.vue'
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: 'app',
+  components:{
+    'game': Game
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="css" scoped>
 </style>

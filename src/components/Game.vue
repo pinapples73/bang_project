@@ -18,7 +18,15 @@
 
 <script>
 export default {
-  name: 'game'
+  name: 'game',
+  data(){
+    return{
+      dice_stores: [
+        ['shoot', 'shoot', 'arrow', 'health', 'gatlin', 'dynamite'],
+        []
+      ]
+    }
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div v-for="(list, i) in lists" :key="i">
-			<drop class="drop list" @drop="handleDrop(list, ...arguments)">
+		<div v-for="(die, i) in dice" :key="i">
+			<drop class="drop list" @drop="handleDrop(die, ...arguments)">
 				<drag v-for="item in list"
 					class="drag"
 					:key="item"

@@ -6,6 +6,8 @@ Vue.use(VueDragDrop);
 
 Vue.config.productionTip = false
 
+export const eventBus = new Vue();
+
 new Vue({
   render: h => h(App),
 }).$mount('#app')

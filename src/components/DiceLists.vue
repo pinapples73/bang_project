@@ -39,12 +39,13 @@
 	.drag {
 		display: inline-block;
 		vertical-align: top;
-		padding: 15px;
-		margin-bottom: 20px;
-		width: 75px;
-		height: 75px;
+		padding: 10px;
+		/* margin-bottom: 20px; */
+		width: 80px;
+		height: 80px;
+    text-align: center;
 	}
-	.drag.shoot1 { background: #aaa; }
+	.drag.shoot1 { background: #aaa;}
 	.drag.shoot2 { background: #888; }
 	.drag.arrow { background: #666; }
 	.drag.health { background: #444; color: #aaa}
@@ -52,10 +53,11 @@
 	.drop {
 		display: inline-block;
 		vertical-align: top;
-		padding: 15px;
+		padding: 10px;
 		margin-bottom: 20px;
-		width: 500px;
+		width: 600px;
     background-color: blue;
-		height: auto;
+		height: 100px;
+    text-align: center;
 	}
 </style>

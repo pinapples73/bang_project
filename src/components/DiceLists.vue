@@ -17,8 +17,8 @@
 		data() {
 			return {
 				dice_bags: [
-					['shoot1', 'health', 'arrow'],
-					['shoot2', 'gatlin'],
+					['shoot2', 'gatlin','shoot1', 'health', 'arrow'],
+					[],
 				],
 			};
 		},
@@ -29,6 +29,7 @@
 					toList.push(data.item);
 					fromList.splice(fromList.indexOf(data.item), 1);
 					toList.sort((a, b) => a > b);
+          console.log(this.dice_bags[0].length);
 				}
 			},
 		},
@@ -55,7 +56,7 @@
 		vertical-align: top;
 		padding: 10px;
 		margin-bottom: 20px;
-		width: 600px;
+		width: 540px;
     background-color: blue;
 		height: 100px;
     text-align: center;

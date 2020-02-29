@@ -1,18 +1,38 @@
 <template>
 	<div>
-		<div v-for="(list, index) in dice_bags" :key="index">
-			<drop class="drop list" @drop="handleDrop(list, ...arguments)">
-				<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
-					{{ item }}	
-				</drag>	
-			</drop>
+		<div>
+			<p :key="refreshFlag">{{ rollsLeft }}</p>
+			<div v-for="(list, index) in dice_bags" :key="refreshFlag">
+				<drop class="drop list" @drop="handleDrop(list, ...arguments)">
+					<div v-if="rollsLeft === 3">
+						<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+							{{ item }}
+						</drag>
+					</div>
+					<div v-else-if="rollsLeft === 0">
+						<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+							{{ item }}
+						</drag>
+					</div>
+					<div v-else>
+						<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :draggable="true" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+							{{ item }}
+						</drag>
+					</div>
+				</drop>
+			</div>
+			<div>
+				<button v-if="rollsLeft > 0" type=button class="roll" v-on:click ="rollAll">Roll Dice</button>
+			</div>
+			<div>
+				<button v-if="rollsLeft <= 2" type=button class="finish" v-on:click ="finishRolling">Finish Rolling</button>
+			</div>
 		</div>
-		<button type=button class="roll" v-on:click ="rollAll">Roll</button>
 	</div>
 </template>
 
 <script>
-import {eventBus} from '../main.js';
+	import {eventBus} from '../main.js';
 	import { Drag, Drop } from 'vue-drag-drop';
 
 
@@ -24,11 +44,13 @@ import {eventBus} from '../main.js';
 					['shoot1', 'shoot2', 'gatlin', 'arrow', 'health'],
 					[]
 				],
-				diceFaces: ['shoot1','shoot2','health','arrow','gatlin','dynamite']
+				diceFaces: ['shoot1','shoot2','health','arrow','gatlin','dynamite'],
+				refreshFlag: 0,
+				rollsLeft: 3
 			};
 		},
 		mounted (){
-			
+
 		},
 		computed: {
 
@@ -47,15 +69,29 @@ import {eventBus} from '../main.js';
 				this.randomNumber = Math.floor(Math.random() * 6);
 				const die = this.diceFaces[this.randomNumber];
 				this.dice_bags[0].push(die);
-				console.log('XXXXXXXXXX', this.dice_bags[0]);
+
 			},
 			rollAll(){
-				const rollRequired = this.dice_bags[0].length;
+				if (this.rollsLeft > 0) {
+					const rollRequired = this.dice_bags[0].length;
+					this.dice_bags[0] = [];
+					for (let index = 0; index < rollRequired; index++) {
+						this.getRandomDie();
+					};
+					console.log('DICE ROLL', this.dice_bags[0]);
+					this.refreshFlag += 1;
+					this.rollsLeft -= 1;
+				}
+			},
+			finishRolling(){
+				if(this.dice_bags[0].length > 0) {
+					for (const die of this.dice_bags[0]) {
+						this.dice_bags[1].push(die);
+					};
+				};
 				this.dice_bags[0] = [];
-				for (let index = 0; index < rollRequired; index++) {
-					this.getRandomDie();
-				} 
-
+				this.rollsLeft = 0;
+				this.refreshFlag += 1;
 			}
 
 		},
@@ -77,6 +113,7 @@ import {eventBus} from '../main.js';
 	.drag.arrow { background: #666; }
 	.drag.health { background: #444; color: #aaa}
 	.drag.gatlin { background: #222; color: #aaa}
+	.drag.dynamite { background: red; color: white}
 	.drop {
 		display: inline-block;
 		vertical-align: top;

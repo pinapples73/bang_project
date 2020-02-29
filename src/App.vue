@@ -1,20 +1,20 @@
 <template lang="html">
   <div id='game_window'>
 			<h3>Load Game</h3>
-			<game></game>
+			<dice-lists></dice-lists>
 	</div>
 
 </template>
 
 <script>
-import Game from "./components/Game";
+import DiceLists from "./components/DiceLists.vue";
 import DragImage from './components/DragImage.vue';
 import DragHtml from './components/DragHtml.vue';
 import DropEffects from './components/DropEffects.vue'
 export default {
   name: 'app',
   components:{
-    'game': Game
+    'dice-lists': DiceLists
   }
 }
 </script>

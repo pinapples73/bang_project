@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<div v-for="(die, i) in dice" :key="i">
-			<drop class="drop list" @drop="handleDrop(die, ...arguments)">
+		<div v-for="(list, index) in dice_bags" :key="index">
+			<drop class="drop list" @drop="handleDrop(list, ...arguments)">
 				<drag v-for="item in list"
 					class="drag"
 					:key="item"
 					:class="{ [item]: true }"
-					:transfer-data="{ item: item, list: list, example: 'lists' }">
+					:transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 						{{ item }}
 				</drag>
 			</drop>
@@ -16,14 +16,13 @@
 
 <script>
 	import { Drag, Drop } from 'vue-drag-drop';
-
 	export default {
 		components: { Drag, Drop },
 		data() {
 			return {
-				lists: [
-					['A', 'B', 'C'],
-					['D', 'E', 'F'],
+				dice_bags: [
+					['shoot1', 'health', 'arrow'],
+					['shoot2', 'gatlin'],
 				],
 			};
 		},
@@ -43,13 +42,17 @@
 <style scoped>
 	.drag {
 		display: inline-block;
+		vertical-align: top;
+		padding: 15px;
+		margin-bottom: 20px;
+		width: auto;
+		height: auto;
 	}
-	.drag.A { background: #aaa; }
-	.drag.B { background: #888; }
-	.drag.C { background: #666; }
-	.drag.D { background: #444; }
-	.drag.E { background: #222; }
-	.drag.F { background: #000; }
+	.drag.shoot1 { background: #aaa; }
+	.drag.shoot2 { background: #888; }
+	.drag.arrow { background: #666; }
+	.drag.health { background: #444; }
+	.drag.gatlin { background: #222; }
 	.drop {
 		display: inline-block;
 		vertical-align: top;

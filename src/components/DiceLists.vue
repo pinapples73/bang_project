@@ -2,11 +2,7 @@
 	<div>
 		<div v-for="(list, index) in dice_bags" :key="index">
 			<drop class="drop list" @drop="handleDrop(list, ...arguments)">
-				<drag v-for="item in list"
-					class="drag"
-					:key="item"
-					:class="{ [item]: true }"
-					:transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+				<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 						{{ item }}
 				</drag>
 			</drop>
@@ -45,20 +41,21 @@
 		vertical-align: top;
 		padding: 15px;
 		margin-bottom: 20px;
-		width: auto;
-		height: auto;
+		width: 75px;
+		height: 75px;
 	}
 	.drag.shoot1 { background: #aaa; }
 	.drag.shoot2 { background: #888; }
 	.drag.arrow { background: #666; }
-	.drag.health { background: #444; }
-	.drag.gatlin { background: #222; }
+	.drag.health { background: #444; color: #aaa}
+	.drag.gatlin { background: #222; color: #aaa}
 	.drop {
 		display: inline-block;
 		vertical-align: top;
 		padding: 15px;
 		margin-bottom: 20px;
-		width: auto;
+		width: 500px;
+    background-color: blue;
 		height: auto;
 	}
 </style>

@@ -13,6 +13,12 @@ import DragHtml from './components/DragHtml.vue';
 import DropEffects from './components/DropEffects.vue'
 export default {
   name: 'app',
+  data (){
+    return {
+      gameState: 'player-setup',
+      
+    }
+  },
   components:{
     'dice-lists': DiceLists
   }

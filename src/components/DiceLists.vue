@@ -37,6 +37,7 @@
 
 
 	export default {
+		// name: 'game-component',
 		components: { Drag, Drop },
 		data() {
 			return {

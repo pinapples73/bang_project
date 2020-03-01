@@ -37,7 +37,7 @@
 
 
 	export default {
-		// name: 'game-component',
+		name: 'dice-roller',
 		components: { Drag, Drop },
 		data() {
 			return {

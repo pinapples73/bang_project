@@ -5,17 +5,17 @@
 			<div v-for="(list, index) in dice_bags" :key="refreshFlag">
 				<drop class="drop list" @drop="handleDrop(list, ...arguments)">
 					<div v-if="rollsLeft === 3">
-						<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+						<drag v-for="(item, index1) in list" class="drag" :key="index1" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 							{{ item }}
 						</drag>
 					</div>
 					<div v-else-if="rollsLeft === 0">
-						<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+						<drag v-for="(item, index2) in list" class="drag" :key="index2" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 							{{ item }}
 						</drag>
 					</div>
 					<div v-else>
-						<drag v-for="item in list" class="drag" :key="item" :class="{ [item]: true }" :draggable="true" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+						<drag v-for="(item, index3) in list" class="drag" :key="index3" :class="{ [item]: true }" :draggable="true" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 							{{ item }}
 						</drag>
 					</div>
@@ -50,12 +50,6 @@
 				rollsLeft: 3
 			};
 		},
-		mounted (){
-
-		},
-		computed: {
-
-		},
 		methods: {
 			handleDrop(toList, data) {
 				const fromList = data.list;
@@ -79,7 +73,6 @@
 					for (let index = 0; index < rollRequired; index++) {
 						this.getRandomDie();
 					};
-					console.log('DICE ROLL', this.dice_bags[0]);
 					this.refreshFlag += 1;
 					this.rollsLeft -= 1;
 				}
@@ -93,6 +86,11 @@
 				this.dice_bags[0] = [];
 				this.rollsLeft = 0;
 				this.refreshFlag += 1;
+
+				const payload = this.dice_bags[1];
+				eventBus.$emit("finshedRolling", payload);
+				console.log(`DICE BAGS!!!!`);
+				// debugger;
 			}
 
 		},

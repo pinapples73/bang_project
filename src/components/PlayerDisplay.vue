@@ -1,6 +1,7 @@
 <template>
 
   <div>
+    HI
 		<div>
 			<!-- <drag v-for="player in players" class="drag" :key="group" :transfer-data="{ group, example: 'groups' }"
 				@dragstart="dragging = group"

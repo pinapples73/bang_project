@@ -23,7 +23,7 @@ import DiceRoller from "./components/DiceRoller.vue";
 import DragImage from './components/DragImage.vue';
 import DragHtml from './components/DragHtml.vue';
 import DropEffects from './components/DropEffects.vue';
-import PlayerDisplay from '.components/PlayerDisplay.vue';
+import PlayerDisplay from './components/PlayerDisplay.vue';
 import {eventBus} from './main.js';
 export default {
   name: 'app',

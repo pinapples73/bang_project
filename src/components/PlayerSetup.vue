@@ -59,7 +59,7 @@ export default {
   props:['players','characters','roles'],
   data () {
     return {
-      currentPlayer: 0,
+      currentPlayer: 4,
       nextPlayer: 0,
       playerName: "",
       nameEntered: false
@@ -132,7 +132,7 @@ export default {
         this.players[this.currentPlayer].currentHealth += 2;
       };
 
-      
+
       //increment current player to move to next player
       this.currentPlayer += 1;
       //reset name entered to reset html for next player

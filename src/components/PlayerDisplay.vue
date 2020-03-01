@@ -2,13 +2,43 @@
 
   <div>
 
-		<div>
-			<drop v-for="(player, index) in players" class="drop" :key="index" :class="{ allowed: dragging === player }"
+		<!-- <div>
+			<drop v-for="player in players" class="drop" :key="player"
       @dragover="handleDragover(player, ...arguments)"
       @drop="handleDrop">
 					{{ player }}
 			</drop>
-		</div>
+		</div> -->
+
+    <div>
+      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
+        {{ players[0] }}
+      </drop>
+    </div>
+
+    <div>
+      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
+        {{ players[1] }}
+      </drop>
+    </div>
+
+    <div>
+      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
+        {{ players[2] }}
+      </drop>
+    </div>
+
+    <div>
+      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
+        {{ players[3] }}
+      </drop>
+    </div>
+
+    <div>
+      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
+        {{ players[4] }}
+      </drop>
+    </div>
 
     <div v-if="!diceRoleComplete" :key="diceRoleComplete">
       <dice-roller></dice-roller>
@@ -49,8 +79,13 @@ export default {
     }
   },
   methods: {
-    handleDrop(){
-      
+    handleDragover(group, data, event) {
+      if (group !== data.group) {
+        event.dataTransfer.dropEffect = 'none';
+      }
+    },
+    handleDrop(data) {
+      alert(`You dropped with data: ${JSON.stringify(data)}`);
     }
   }
 }
@@ -81,5 +116,8 @@ export default {
   background-color: grey;
   height: 200px;
   text-align: center;
+}
+.drop.allowed {
+		background-color: #dfd;
 }
 </style>

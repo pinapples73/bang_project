@@ -8,7 +8,7 @@
         <input type="text" id="playerName" name="playerName" v-model="players[currentPlayer].name" required/>
       </div>
 
-      <div>
+      <div v-if="nameEntered" :key="nameEntered">
         <p>Character: {{players[currentPlayer].character}}</p>
         <p>Max Health: {{players[currentPlayer].maxHealth}}</p>
         <p>Special Ability: {{players[currentPlayer].special}}</p>
@@ -30,6 +30,7 @@
         <p>{{player.name}}</p>
         <p>{{player.character}}</p>
         <p>{{player.role}}</p>
+        <hr>
 
       </div>
     </div>

@@ -89,6 +89,7 @@ export default {
       // and assign them to the current player eg. max health, special etc
       this.players[this.currentPlayer].character = selectedCharacter.name;
       this.players[this.currentPlayer].maxHealth = selectedCharacter.maxHealth;
+      this.players[this.currentPlayer].currentHealth = selectedCharacter.maxHealth;
       this.players[this.currentPlayer].special = selectedCharacter.special;
       //remove selected character from characters array
       //  this ensures the same character will not be choosen a second time
@@ -124,8 +125,16 @@ export default {
     //it changes the current player variable bu one so it moves to next player
     // then it sets name NameEntered to false so the correct html divs etc are displayed
     handleNextPlayer(){
+      //below if block checks if sheriff was assigned and increases health
+      if(this.players[this.currentPlayer].role === 'sheriff') {
+        this.players[this.currentPlayer].maxHealth += 2;
+        this.players[this.currentPlayer].currentHealth += 2;
+      };
+      //increment current player to move to next player
       this.currentPlayer += 1;
+      //reset name entered to reset html for next player
       this.nameEntered = false;
+
     }
   }
 }

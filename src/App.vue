@@ -18,11 +18,18 @@ import DiceRoller from "./components/DiceRoller.vue";
 import DragImage from './components/DragImage.vue';
 import DragHtml from './components/DragHtml.vue';
 import DropEffects from './components/DropEffects.vue'
+import {eventBus} from './main.js';
 export default {
   name: 'app',
   components:{
     'dice-roller': DiceRoller,
     'player-setup': PlayerSetup
+  },
+  mounted(){
+    eventBus.$on("initialiseGame",() => {
+      this.gameState = 'initialiseGame';
+      console.log("XXXXXX")
+    })
   },
   data (){
     return {

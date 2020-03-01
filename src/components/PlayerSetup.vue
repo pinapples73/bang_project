@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js';
 export default {
   name: 'player-setup',
   props:['players','characters','roles'],
@@ -130,10 +131,16 @@ export default {
         this.players[this.currentPlayer].maxHealth += 2;
         this.players[this.currentPlayer].currentHealth += 2;
       };
+
+      
       //increment current player to move to next player
       this.currentPlayer += 1;
       //reset name entered to reset html for next player
       this.nameEntered = false;
+
+      if(this.currentPlayer === 5){
+         eventBus.$emit("initialiseGame")
+      }
 
     }
   }

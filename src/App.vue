@@ -8,6 +8,11 @@
       <h3>Roll Yer Dice Dude!</h3>
       <dice-roller></dice-roller>
     </div>
+
+    <div v-if="gameState === 'initialiseGame'">
+      <h3>Initialse Game</h3>
+      <player-display :players="players"></player-display>
+    </div>
 	</div>
 
 </template>
@@ -17,13 +22,15 @@ import PlayerSetup from "./components/PlayerSetup.vue";
 import DiceRoller from "./components/DiceRoller.vue";
 import DragImage from './components/DragImage.vue';
 import DragHtml from './components/DragHtml.vue';
-import DropEffects from './components/DropEffects.vue'
+import DropEffects from './components/DropEffects.vue';
+import PlayerDisplay from '.components/PlayerDisplay.vue';
 import {eventBus} from './main.js';
 export default {
   name: 'app',
   components:{
     'dice-roller': DiceRoller,
-    'player-setup': PlayerSetup
+    'player-setup': PlayerSetup,
+    'player-display': PlayerDisplay
   },
   mounted(){
     eventBus.$on("initialiseGame",() => {

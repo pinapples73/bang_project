@@ -175,7 +175,7 @@
 		border-radius: 15px;
 }
 	.drag.gatlin {
-		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPzuIPE4mD8kzZoEHDFUZtOLHZshHjEoEPsohQgtvn9kJxKlvt');
+		background-image: src('./images/gatlin.png');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -200,7 +200,7 @@
 		border-radius: 15px;
 		height: 100px;
     text-align: center;
-		
+
 
 	}
 	#rollbtn{

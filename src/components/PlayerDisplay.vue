@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div id="whole-game">
 
     <div id="player-div">
       <div>
@@ -113,12 +113,36 @@ export default {
   height: 80px;
   text-align: center;
 }
-.drag.shoot1 { background: #aaa;}
-.drag.shoot2 { background: #888; }
-.drag.arrow { background: #666; }
-.drag.health { background: #444; color: #aaa}
-.drag.gatlin { background: #222; color: #aaa}
-.drag.dynamite { background: red; color: white}
+.drag.shoot1 {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+  margin-right: 10px;
+  border-radius: 15px;
+}
+.drag.shoot2 {
+  background: #888;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+.drag.arrow {
+  background: #666;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+.drag.health {
+  background: #444; color: #aaa;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+.drag.gatlin {
+  background: #222; color: #aaa;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+.drag.dynamite {
+  background: red; color: white;
+  margin-right: 10px;
+  border-radius: 15px;
+}
 .drop {
   display: inline-block;
   vertical-align: top;
@@ -128,8 +152,17 @@ export default {
   background-color: grey;
   height: 200px;
   text-align: center;
+  border-radius: 15px;
+
 }
 .drop.allowed {
 		background-color: #dfd;
+}
+#whole-game{
+background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 }
 </style>

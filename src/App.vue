@@ -1,4 +1,5 @@
 <template lang="html">
+
   <div id='game_window'>
     <div v-if="gameState === 'player-setup'">
       <player-setup :players="players" :characters="characters" :roles="roles" ></player-setup>
@@ -11,7 +12,8 @@
     <div v-if="gameState === 'initialiseGame'">
       <player-display :players="players"></player-display>
     </div>
-	</div>
+  </div>
+
 
 </template>
 
@@ -131,5 +133,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+
 
 </style>

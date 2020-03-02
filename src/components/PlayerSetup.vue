@@ -1,4 +1,5 @@
 <template>
+  <div id="start-game">
   <div>
     <!-- This checks if current player is smaller than 5
     if it is then the div will be displayed
@@ -49,7 +50,7 @@
 
   </div>
 
-
+</div>
 </template>
 
 <script>
@@ -148,4 +149,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#start-game{
+background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg");
+height: 600px;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
 </style>

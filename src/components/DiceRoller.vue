@@ -22,10 +22,10 @@
 				</drop>
 			</div>
 			<div>
-				<button v-if="rollsLeft > 0" type=button class="roll" v-on:click ="rollAll">Roll Dice</button>
+				<button id="rollbtn" v-if="rollsLeft > 0" type=button class="roll" v-on:click ="rollAll">Roll Dice</button>
 			</div>
 			<div>
-				<button v-if="rollsLeft <= 2" type=button class="finish" v-on:click ="finishRolling">Finish Rolling</button>
+				<button id="finishbtn" v-if="rollsLeft <= 2" type=button class="finish" v-on:click ="finishRolling">Finish Rolling</button>
 			</div>
 		</div>
 	</div>
@@ -136,21 +136,76 @@
 		width: 80px;
 		height: 80px;
     text-align: center;
+
 	}
-	.drag.shoot1 { background: #aaa;}
-	.drag.shoot2 { background: #888; }
-	.drag.arrow { background: #666; }
-	.drag.health { background: #444; color: #aaa}
-	.drag.gatlin { background: #222; color: #aaa}
-	.drag.zdynamite { background: red; color: white}
+	.drag.shoot1 {
+		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		margin-right: 10px;
+		border-radius: 15px;
+
+	}
+
+	.drag.shoot2 {
+		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfTwChfcPQ_pBG40UjX3mav5l610yUeECGaNnto004dDPtmhNA');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		margin-right: 5px;
+		border-radius: 15px;
+}
+	.drag.arrow {
+		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		margin-right: 5px;
+		border-radius: 15px;
+}
+	.drag.health {
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAATlBMVEX////MAADmi4vmjY3dWVnutbX43d3++Pj0zs7QHx/TNjbXWlrJAAD65ubOCQnhcnLwvr7WU1PolJTUMDDdXFzRKCj98/PdY2PmkJDrpqa0Ve5RAAABIElEQVR4nO3ZW07DMBRF0aaFAiV9ps/5T5QRxKaSkTnVWv+xzlY+72IBAAAAAAAAAAAAAAAAAGm2nyXb3vMaOO2+5u1Ovec1sByHeeOq97wGFOZTmE9hPoX5FOZTmE9hPoX5FOZTmE9hPoX5FOZTmE9hvtcvvBcL//2FdLt/qzhPhcBhmM61B/Z9D+HrqfSHWhindd/CzR8HDsNGoUKFChUqVKhQoUKFChUqVKhQoUKFChUqVNik8DLWVAKq31/6Fl4P7xWHWzHwVn/g2rXwF1bF++G997wGXv8GrDCfwnwK8ynMpzCfwnwK8ynMpzCfwnwK8ynMpzCfwnwK85ULl73nNfA4fs87PnrPa+GjpPc4AAAAAAAAAAAAAAAAAHjeD/9JKHPY46zxAAAAAElFTkSuQmCC');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		margin-right: 5px;
+		border-radius: 15px;
+}
+	.drag.gatlin {
+		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPzuIPE4mD8kzZoEHDFUZtOLHZshHjEoEPsohQgtvn9kJxKlvt');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		margin-right: 5px;
+		border-radius: 15px;}
+	.drag.zdynamite {
+		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+			margin-right: 5px;
+			border-radius: 15px;}
 	.drop {
 		display: inline-block;
 		vertical-align: top;
 		padding: 10px;
 		margin-bottom: 20px;
 		width: 540px;
-    background-color: blue;
+    background-color: rgba(9, 10, 9, 0.5);
+		border-radius: 15px;
 		height: 100px;
     text-align: center;
+
 	}
+	#rollbtn{
+		width: 100px;
+		height: 40px;
+		margin-bottom: 10px;
+		}
+
+		#finishbtn{
+			width: 100px;
+			height: 40px;
+		}
 </style>

@@ -53,8 +53,8 @@ export default {
         {
           name: 'player2',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 4,
+          currentHealth: 4,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -62,8 +62,8 @@ export default {
         {
           name: 'player3',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 7,
+          currentHealth: 5,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -71,8 +71,8 @@ export default {
         {
           name: 'player4',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 2,
+          currentHealth: 1,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -80,8 +80,8 @@ export default {
         {
           name: 'player5',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 6,
+          currentHealth: 2,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'

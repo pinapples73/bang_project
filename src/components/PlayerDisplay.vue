@@ -5,6 +5,26 @@
     <div id="player-div">
       <div>
         <drop class="drop" :players="players" @drop="handleDrop0">
+          {{ players[0] }}
+        </drop>
+      </div>
+      <div>
+        <drop class="drop" :players="players" @drop="handleDrop1">
+          {{ players[1] }}
+        </drop>
+      </div>
+      <div>
+        <drop class="drop" :players="players" @drop="handleDrop2">
+          {{ players[2] }}
+        </drop>
+      </div>
+      <div>
+        <drop class="drop" :players="players" @drop="handleDrop3">
+          {{ players[3] }}
+        </drop>
+      </div>
+      <div>
+        <drop class="drop" :players="players" @drop="handleDrop4">
           {{ players[4] }}
         </drop>
       </div>
@@ -65,6 +85,100 @@ export default {
       }
     },
     handleDrop0(data) {
+      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
+      if(data.die === 'health') {
+        if(this.players[0].currentHealth === this.players[0].maxHealth) {
+          alert(`The player is at full health`);
+        }
+        else {
+          this.players[0].currentHealth += 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Thanks for the health man!`);
+        }
+      };
+      if(data.die === 'shoot1') {
+        if(this.players[0].currentHealth === 0) {
+          alert(`The player is already deid`);
+        }
+        else {
+          this.players[0
+
+          ].currentHealth -= 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Argh! You got me!`);
+        }
+      };
+    },
+    handleDrop1(data) {
+      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
+      if(data.die === 'health') {
+        if(this.players[1].currentHealth === this.players[1].maxHealth) {
+          alert(`The player is at full health`);
+        }
+        else {
+          this.players[1].currentHealth += 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Thanks for the health man!`);
+        }
+      };
+      if(data.die === 'shoot1') {
+        if(this.players[1].currentHealth === 0) {
+          alert(`The player is already deid`);
+        }
+        else {
+          this.players[1].currentHealth -= 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Argh! You got me!`);
+        }
+      };
+    },
+    handleDrop2(data) {
+      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
+      if(data.die === 'health') {
+        if(this.players[2].currentHealth === this.players[2].maxHealth) {
+          alert(`The player is at full health`);
+        }
+        else {
+          this.players[2].currentHealth += 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Thanks for the health man!`);
+        }
+      };
+      if(data.die === 'shoot1') {
+        if(this.players[2].currentHealth === 0) {
+          alert(`The player is already deid`);
+        }
+        else {
+          this.players[2].currentHealth -= 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Argh! You got me!`);
+        }
+      };
+    },
+    handleDrop3(data) {
+      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
+      if(data.die === 'health') {
+        if(this.players[3].currentHealth === this.players[3].maxHealth) {
+          alert(`The player is at full health`);
+        }
+        else {
+          this.players[3].currentHealth += 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Thanks for the health man!`);
+        }
+      };
+      if(data.die === 'shoot1') {
+        if(this.players[3].currentHealth === 0) {
+          alert(`The player is already deid`);
+        }
+        else {
+          this.players[3].currentHealth -= 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Argh! You got me!`);
+        }
+      };
+    },
+    handleDrop4(data) {
       alert(`You dropped a ${data.die} die at dice index ${data.index}`);
       if(data.die === 'health') {
         if(this.players[4].currentHealth === this.players[4].maxHealth) {

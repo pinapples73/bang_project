@@ -98,14 +98,9 @@
 
 				this.totalDynamiteRolled += dynamiteCount;
 				if (this.totalDynamiteRolled >= 3) {
-
 					alert(`You rolled ${this.totalDynamiteRolled} dynamite. Your turn has finished and you lose 1 health! Ya clumsy varmint!`);
-					// this.players[this.activePlayer].currentHealth -= 1;
-
 					eventBus.$emit('tooManyDynamite');
-
 				}
-				console.log(`dynamite left:`, this.dice_bags[0]);
 			},
 			finishRolling(){
 				if(this.dice_bags[0].length > 0) {

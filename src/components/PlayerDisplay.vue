@@ -2,7 +2,7 @@
 
   <div>
 
-    <div id="player-div">
+    <div v-if="diceRoleComplete" :key="diceRoleComplete" id="player-div">
       <div>
         <drop class="drop" :players="players" @drop="handleDrop0">
           {{ players[0] }}
@@ -28,8 +28,24 @@
           {{ players[4] }}
         </drop>
       </div>
+    </div>
 
-
+    <div v-if="!diceRoleComplete" :key="diceRoleComplete" id="player-div2">
+      <div class="drop">
+          {{ players[0] }}
+      </div>
+      <div class="drop">
+          {{ players[1] }}
+      </div>
+      <div class="drop">
+          {{ players[2] }}
+      </div>
+      <div class="drop">
+          {{ players[3] }}
+      </div>
+      <div class="drop">
+          {{ players[4] }}
+      </div>
     </div>
 
     <div id="dice-div">
@@ -68,7 +84,7 @@ export default {
       console.log(`current player health`, this.players[this.activePlayer].currentHealth);
       this.players[this.activePlayer].currentHealth -= 1;
       console.log(`current player health`, this.players[this.activePlayer].currentHealth);
-      //this.resetPlayer();
+      //this.moveToNextPlayer();
     });
   },
   data () {
@@ -84,8 +100,15 @@ export default {
         event.dataTransfer.dropEffect = 'none';
       }
     },
+    moveToNextPlayer(){
+      // check if active player is 4 - if so make it 0
+      // else increment activePlayer
+      // reset dynamite count to 0
+
+      //alert player ? is up
+
+    },
     handleDrop0(data) {
-      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
       if(data.die === 'health') {
         if(this.players[0].currentHealth === this.players[0].maxHealth) {
           alert(`The player is at full health`);
@@ -110,7 +133,6 @@ export default {
       };
     },
     handleDrop1(data) {
-      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
       if(data.die === 'health') {
         if(this.players[1].currentHealth === this.players[1].maxHealth) {
           alert(`The player is at full health`);
@@ -133,7 +155,6 @@ export default {
       };
     },
     handleDrop2(data) {
-      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
       if(data.die === 'health') {
         if(this.players[2].currentHealth === this.players[2].maxHealth) {
           alert(`The player is at full health`);
@@ -156,7 +177,6 @@ export default {
       };
     },
     handleDrop3(data) {
-      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
       if(data.die === 'health') {
         if(this.players[3].currentHealth === this.players[3].maxHealth) {
           alert(`The player is at full health`);
@@ -179,7 +199,6 @@ export default {
       };
     },
     handleDrop4(data) {
-      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
       if(data.die === 'health') {
         if(this.players[4].currentHealth === this.players[4].maxHealth) {
           alert(`The player is at full health`);
@@ -207,6 +226,11 @@ export default {
 
 <style lang="css" scoped>
 #player-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#player-div2 {
   display: flex;
   flex-direction: row;
   justify-content: center;

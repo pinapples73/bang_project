@@ -14,7 +14,7 @@
 
     <div id="dice-div">
       <div v-if="!diceRoleComplete" :key="diceRoleComplete">
-        <dice-roller></dice-roller>
+        <dice-roller :activePlayer="activePlayer"></dice-roller>
       </div>
 
       <div v-if="diceRoleComplete" :key="diceRoleComplete">
@@ -43,13 +43,19 @@ export default {
       this.choosenDice = payload;
       this.diceRoleComplete = true;
       console.log("AAAAAAAAA")
-    })
+    });
+    eventBus.$on("tooManyDynamite", () => {
+      console.log(`current player health`, this.players[this.activePlayer].currentHealth);
+      this.players[this.activePlayer].currentHealth -= 1;
+      console.log(`current player health`, this.players[this.activePlayer].currentHealth);
+      //this.resetPlayer();
+    });
   },
   data () {
     return {
-      'activePlayer': 0,
-      'choosenDice': null,
-      'diceRoleComplete': false
+      choosenDice: null,
+      diceRoleComplete: false,
+      activePlayer:0
     }
   },
   methods: {
@@ -61,21 +67,21 @@ export default {
     handleDrop0(data) {
       alert(`You dropped a ${data.die} die at dice index ${data.index}`);
       if(data.die === 'health') {
-        if(this.players[0].currentHealth === this.players[0].maxHealth) {
+        if(this.players[4].currentHealth === this.players[4].maxHealth) {
           alert(`The player is at full health`);
         }
         else {
-          this.players[0].currentHealth += 1;
+          this.players[4].currentHealth += 1;
           this.choosenDice.splice( data.index, 1 );
           alert(`Thanks for the health man!`);
         }
       };
       if(data.die === 'shoot1') {
-        if(this.players[0].currentHealth === 0) {
+        if(this.players[4].currentHealth === 0) {
           alert(`The player is already deid`);
         }
         else {
-          this.players[0].currentHealth -= 1;
+          this.players[4].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
           alert(`Argh! You got me!`);
         }

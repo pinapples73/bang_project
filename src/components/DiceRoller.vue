@@ -39,6 +39,11 @@
 	export default {
 		name: 'dice-roller',
 		components: { Drag, Drop },
+		mounted(){
+	    // eventBus.$on("nextPlayersTurn",(payload) => {
+	    //   alert(`Its onto the next player! Roll away player${payload}`);
+	    // });
+	  },
 		data() {
 			return {
 				dice_bags: [
@@ -48,7 +53,7 @@
 				diceFaces: ['shoot1','shoot1','health','arrow','gatlin','zdynamite'],
 				refreshFlag: 0,
 				rollsLeft: 3,
-				totalDynamiteRolled: 0
+				totalDynamiteRolled: 2
 			};
 		},
 		methods: {
@@ -99,6 +104,14 @@
 				this.totalDynamiteRolled += dynamiteCount;
 				if (this.totalDynamiteRolled >= 3) {
 					alert(`You rolled ${this.totalDynamiteRolled} dynamite. Your turn has finished and you lose 1 health! Ya clumsy varmint!`);
+					// HERE --->
+					this.refreshFlag = 0;
+					this.rollsLeft = 4;
+					this.totalDynamiteRolled = 0;
+					this.dice_bags = [
+						['shoot1', 'shoot1', 'gatlin', 'arrow', 'health'],
+						[]
+					]
 					eventBus.$emit('tooManyDynamite');
 				}
 			},
@@ -114,10 +127,7 @@
 
 				const payload = this.dice_bags[1];
 				eventBus.$emit("finshedRolling", payload);
-				console.log(`DICE BAGS!!!!`);
-				// debugger;
 			}
-
 		},
 	};
 </script>

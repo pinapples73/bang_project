@@ -45,7 +45,7 @@ export default {
           name: 'player1',
           arrowCount: 0,
           maxHealth: 5,
-          currentHealth: 3,
+          currentHealth: 1,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -54,7 +54,7 @@ export default {
           name: 'player2',
           arrowCount: 0,
           maxHealth: 4,
-          currentHealth: 4,
+          currentHealth: 1,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'

@@ -78,13 +78,14 @@ export default {
     eventBus.$on("finshedRolling",(payload) => {
       this.choosenDice = payload;
       this.diceRoleComplete = true;
-      console.log("AAAAAAAAA")
     });
     eventBus.$on("tooManyDynamite", () => {
-      console.log(`current player health`, this.players[this.activePlayer].currentHealth);
-      this.players[this.activePlayer].currentHealth -= 1;
-      console.log(`current player health`, this.players[this.activePlayer].currentHealth);
-      //this.moveToNextPlayer();
+      if(this.players[this.activePlayer].currentHealth > 0) {
+        this.players[this.activePlayer].currentHealth -= 1;
+      };
+      this.choosenDice = [];
+      // this.dropableDiceCheck()
+      this.moveToNextPlayer();
     });
   },
   data () {
@@ -101,17 +102,40 @@ export default {
       }
     },
     moveToNextPlayer(){
-      // check if active player is 4 - if so make it 0
-      // else increment activePlayer
-      // reset dynamite count to 0
-
-      //alert player ? is up
-
+      if(this.activePlayer === 4) {
+        this.activePlayer = 0;
+      }
+      else {
+        this.activePlayer += 1;
+      };
+      if(this.players[this.activePlayer].currentHealth === 0) {
+        this.moveToNextPlayer();
+      }
+      this.choosenDice = null;
+      this.diceRoleComplete = false;
+      // eventBus.$emit('nextPlayersTurn', this.activePlayer);
+    },
+    dropableDiceCheck() {
+      let dropableDiceLeft = false;
+      for(const dice of this.choosenDice){
+        if(dice === 'health' || dice === 'shoot1') {
+          console.log('Still have:', dice);
+          // TODO: add check for all players full health
+          dropableDiceLeft = true;
+        }
+      };
+      if(dropableDiceLeft === false) {
+        alert(`Your turn is over.`);
+        this.moveToNextPlayer();
+      };
     },
     handleDrop0(data) {
       if(data.die === 'health') {
         if(this.players[0].currentHealth === this.players[0].maxHealth) {
           alert(`The player is at full health`);
+        }
+        else if (this.players[0].currentHealth === 0) {
+            alert('This player is deid ya numpty!');
         }
         else {
           this.players[0].currentHealth += 1;
@@ -119,23 +143,32 @@ export default {
           alert(`Thanks for the health man!`);
         }
       };
+
       if(data.die === 'shoot1') {
         if(this.players[0].currentHealth === 0) {
           alert(`The player is already deid`);
         }
         else {
-          this.players[0
-
-          ].currentHealth -= 1;
+          this.players[0].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Argh! You got me!`);
+          if(this.players[0].currentHealth <= 0) {
+            this.players[0].currentHealth = 0;
+            alert(`Ya killed me ya no good dirty rat!`)
+          } else {
+            alert(`Argh! You got me!`);
+          }
         }
       };
+
+      this.dropableDiceCheck();
     },
     handleDrop1(data) {
       if(data.die === 'health') {
         if(this.players[1].currentHealth === this.players[1].maxHealth) {
           alert(`The player is at full health`);
+        }
+        else if (this.players[1].currentHealth === 0) {
+            alert('This player is deid ya numpty!');
         }
         else {
           this.players[1].currentHealth += 1;
@@ -143,6 +176,7 @@ export default {
           alert(`Thanks for the health man!`);
         }
       };
+
       if(data.die === 'shoot1') {
         if(this.players[1].currentHealth === 0) {
           alert(`The player is already deid`);
@@ -150,14 +184,24 @@ export default {
         else {
           this.players[1].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Argh! You got me!`);
+          if(this.players[1].currentHealth <= 0) {
+            this.players[1].currentHealth = 0;
+            alert(`Ya killed me ya no good dirty rat!`)
+          } else {
+            alert(`Argh! You got me!`);
+          }
         }
       };
+
+      this.dropableDiceCheck();
     },
     handleDrop2(data) {
       if(data.die === 'health') {
         if(this.players[2].currentHealth === this.players[2].maxHealth) {
           alert(`The player is at full health`);
+        }
+        else if (this.players[2].currentHealth === 0) {
+            alert('This player is deid ya numpty!');
         }
         else {
           this.players[2].currentHealth += 1;
@@ -165,6 +209,7 @@ export default {
           alert(`Thanks for the health man!`);
         }
       };
+
       if(data.die === 'shoot1') {
         if(this.players[2].currentHealth === 0) {
           alert(`The player is already deid`);
@@ -172,14 +217,24 @@ export default {
         else {
           this.players[2].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Argh! You got me!`);
+          if(this.players[2].currentHealth <= 0) {
+            this.players[2].currentHealth = 0;
+            alert(`Ya killed me ya no good dirty rat!`)
+          } else {
+            alert(`Argh! You got me!`);
+          }
         }
       };
+
+      this.dropableDiceCheck();
     },
     handleDrop3(data) {
       if(data.die === 'health') {
         if(this.players[3].currentHealth === this.players[3].maxHealth) {
           alert(`The player is at full health`);
+        }
+        else if (this.players[3].currentHealth === 0) {
+          alert('This player is deid ya numpty!');
         }
         else {
           this.players[3].currentHealth += 1;
@@ -187,6 +242,7 @@ export default {
           alert(`Thanks for the health man!`);
         }
       };
+
       if(data.die === 'shoot1') {
         if(this.players[3].currentHealth === 0) {
           alert(`The player is already deid`);
@@ -194,14 +250,24 @@ export default {
         else {
           this.players[3].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Argh! You got me!`);
-        }
-      };
+          if(this.players[3].currentHealth <= 0) {
+            this.players[3].currentHealth = 0;
+            alert(`Ya killed me ya no good dirty rat!`)
+          } else {
+            alert(`Argh! You got me!`);
+          }
+        };
+
+        this.dropableDiceCheck();
+      }
     },
     handleDrop4(data) {
       if(data.die === 'health') {
         if(this.players[4].currentHealth === this.players[4].maxHealth) {
           alert(`The player is at full health`);
+        }
+        else if (this.players[4].currentHealth === 0) {
+            alert('This player is deid ya numpty!');
         }
         else {
           this.players[4].currentHealth += 1;
@@ -209,6 +275,7 @@ export default {
           alert(`Thanks for the health man!`);
         }
       };
+
       if(data.die === 'shoot1') {
         if(this.players[4].currentHealth === 0) {
           alert(`The player is already deid`);
@@ -216,9 +283,16 @@ export default {
         else {
           this.players[4].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Argh! You got me!`);
+          if(this.players[4].currentHealth <= 0) {
+            this.players[4].currentHealth = 0;
+            alert(`Ya killed me ya no good dirty rat!`)
+          } else {
+            alert(`Argh! You got me!`);
+          }
         }
       };
+
+      this.dropableDiceCheck();
     }
   }
 }

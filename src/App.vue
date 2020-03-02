@@ -18,9 +18,6 @@
 <script>
 import PlayerSetup from "./components/PlayerSetup.vue";
 import DiceRoller from "./components/DiceRoller.vue";
-import DragImage from './components/DragImage.vue';
-import DragHtml from './components/DragHtml.vue';
-import DropEffects from './components/DropEffects.vue';
 import PlayerDisplay from './components/PlayerDisplay.vue';
 import {eventBus} from './main.js';
 export default {
@@ -33,13 +30,11 @@ export default {
   mounted(){
     eventBus.$on("initialiseGame",() => {
       this.gameState = 'initialiseGame';
-      console.log("XXXXXX")
     })
   },
   data (){
     return {
       gameState: 'player-setup',
-      mainArrowSupply: 15,
       players: [
         {
           name: 'player1',

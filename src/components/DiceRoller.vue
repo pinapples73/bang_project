@@ -39,21 +39,16 @@
 	export default {
 		name: 'dice-roller',
 		components: { Drag, Drop },
-		mounted(){
-	    // eventBus.$on("nextPlayersTurn",(payload) => {
-	    //   alert(`Its onto the next player! Roll away player${payload}`);
-	    // });
-	  },
 		data() {
 			return {
 				dice_bags: [
-					['shoot1', 'shoot1', 'gatlin', 'arrow', 'health'],
+					[' ', ' ', ' ', ' ', ' '],
 					[]
 				],
 				diceFaces: ['shoot1','shoot1','health','arrow','gatlin','zdynamite'],
 				refreshFlag: 0,
 				rollsLeft: 3,
-				totalDynamiteRolled: 2
+				totalDynamiteRolled: 0
 			};
 		},
 		methods: {
@@ -79,8 +74,9 @@
 					for (let index = 0; index < rollRequired; index++) {
 						this.getRandomDie();
 					};
+					this.arrowCheck();
 					this.dynamiteCheck();
-					// this.arrowCheck();
+
 
 					this.refreshFlag += 1;
 					this.rollsLeft -= 1;
@@ -89,8 +85,6 @@
 			dynamiteCheck(){
 				let dynamiteCount = 0;
 				for(const [index, die] of this.dice_bags[0].entries()){
-					console.log(`checking dynamite`, die, index);
-
 					if(die === 'zdynamite') {
 						dynamiteCount += 1;
 						alert(`You rolled a dynamite. Oh crumbs!`)
@@ -109,11 +103,19 @@
 					this.rollsLeft = 4;
 					this.totalDynamiteRolled = 0;
 					this.dice_bags = [
-						['shoot1', 'shoot1', 'gatlin', 'arrow', 'health'],
+						[' ', ' ', ' ', ' ', ' '],
 						[]
 					]
 					eventBus.$emit('tooManyDynamite');
 				}
+			},
+			arrowCheck(){
+				for(const die of this.dice_bags[0]) {
+					if(die === 'arrow') {
+						eventBus.$emit('arrowRolled');
+						alert(`You got shot with an arrow`);
+					};
+				};
 			},
 			finishRolling(){
 				if(this.dice_bags[0].length > 0) {

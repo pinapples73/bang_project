@@ -84,18 +84,43 @@ export default {
         this.players[this.activePlayer].currentHealth -= 1;
       };
       this.choosenDice = [];
-      // this.dropableDiceCheck()
       this.moveToNextPlayer();
+    });
+    eventBus.$on("arrowRolled", () => {
+      this.players[this.activePlayer].arrowCount += 1;
+      if(this.mainArrowSupply > 0) {
+        this.mainArrowSupply -= 1;
+      };
+      this.checkMainArrowSupply();
     });
   },
   data () {
     return {
       choosenDice: null,
       diceRoleComplete: false,
-      activePlayer:0
+      activePlayer:0,
+      mainArrowSupply: 5
     }
   },
   methods: {
+    checkMainArrowSupply(){
+      if(this.mainArrowSupply === 0) {
+        alert(`The main arrow supply is empty. Prepare to take arrow damage!`);
+        for(const player of this.players) {
+          debugger;
+          console.log(player);
+          if(player.currentHealth > 0) {
+            player.currentHealth -= player.arrowCount;
+          };
+          if(player.currentHealth <= 0) {
+            player.currentHealth = 0;
+            // TODO: check if roller is dead - and move onto next player
+          };
+          player.arrowCount = 0;
+        };
+        this.mainArrowSupply = 10;
+      }
+    },
     handleDragover(group, data, event) {
       if (group !== data.group) {
         event.dataTransfer.dropEffect = 'none';
@@ -113,7 +138,6 @@ export default {
       }
       this.choosenDice = null;
       this.diceRoleComplete = false;
-      // eventBus.$emit('nextPlayersTurn', this.activePlayer);
     },
     dropableDiceCheck() {
       let dropableDiceLeft = false;
@@ -288,10 +312,9 @@ export default {
             alert(`Ya killed me ya no good dirty rat!`)
           } else {
             alert(`Argh! You got me!`);
-          }
-        }
+          };
+        };
       };
-
       this.dropableDiceCheck();
     }
   }

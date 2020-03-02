@@ -5,18 +5,18 @@
     if it is then the div will be displayed
     if current player is 5 or more it will not show up
     as setup of players would be complete-->
-    <div :key="currentPlayer" v-if="(currentPlayer) < 5">
-      <h2>Setup {{players[currentPlayer].name}}</h2>
+    <div id="player-setup" :key="currentPlayer" v-if="(currentPlayer) < 5">
+      <h1>Setup {{players[currentPlayer].name}}</h1>
 
-      <div>
-        <label for="name">Enter Name:</label>
+      <div id="enter-name">
+        <label for="name">Enter Name:  </label>
         <input type="text" id="playerName" name="playerName" v-model="players[currentPlayer].name" required/>
       </div>
 
       <!-- This stays hidden until you click Create Character button -->
       <!-- if chcks if variable NameEntered is true and if it is it displays
       the div-->
-      <div v-if="nameEntered" :key="nameEntered">
+      <div id="assigned-char" v-if="nameEntered" :key="nameEntered">
         <p>Character: {{players[currentPlayer].character}}</p>
         <p>Max Health: {{players[currentPlayer].maxHealth}}</p>
         <p>Special Ability: {{players[currentPlayer].special}}</p>
@@ -27,13 +27,13 @@
       display depending on the value of nameEntered. In this instance if its
       false it will display-->
       <div v-if="!nameEntered" :key="nameEntered">
-        <button type="button" name="button" v-on:click="handleSubmit">Create Character</button>
+        <button id="name-enter" type="button" name="button" v-on:click="handleSubmit">Create Character</button>
       </div>
       <!-- This is the Next Player button. similar to above the div will
       display depending on the value of nameEntered. In this instance if its
       true it will display-->
-      <div v-if="nameEntered" :key="nameEntered">
-        <button type="button" name="button" v-on:click="handleNextPlayer">Next Player</button>
+      <div  v-if="nameEntered" :key="nameEntered">
+        <button id="next-player" type="button" name="button" v-on:click="handleNextPlayer">Next Player</button>
       </div>
     </div>
     <!-- This div states that setup is complete and will display when currentPlayer is
@@ -155,5 +155,62 @@ height: 600px;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
+align-items: center;
+
+}
+#enter-name{
+  font-size: 25px;
+  font-weight: bold;
+  margin: auto;
+  box-sizing: border-box;
+  align-items: center;
+  width: 25%;
+  border: 5px solid black;
+  margin: 15 auto;
+  border-radius: 15px;
+  padding: 10px 10px 5px 5px;
+  background: rgba(9, 10, 9, 0.5);
+  box-shadow: 0 0 25px 1px black;
+  margin-bottom: 20px;
+  padding: 50px 20px 50px 20px;
+}
+
+#assigned-char{
+  font-size: 18px;
+  font-weight: bold;
+  margin: auto;
+  box-sizing: border-box;
+  align-items: center;
+  width: 25%;
+  border: 5px solid black;
+  margin: 15 auto;
+  border-radius: 15px;
+  padding: 10px 10px 5px 5px;
+  background: rgba(9, 10, 9, 0.5);
+  box-shadow: 0 0 25px 1px black;
+  padding: 20px 20px 20px 20px;
+}
+#player-setup{
+  text-align: center;
+  font-size: 30px;
+}
+
+#name-enter{
+  width: 120px;
+  height: 80px;
+  margin-top: 15px;
+  border-radius: 11px;
+  box-shadow: 0 0 25px 1px black;
+  font-size: 20px;
+
+}
+
+#next-player{
+  width: 120px;
+  height: 80px;
+  margin-top: 15px;
+  border-radius: 11px;
+  box-shadow: 0 0 25px 1px black;
+  font-size: 20px;
 }
 </style>

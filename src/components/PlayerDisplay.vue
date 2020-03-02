@@ -152,7 +152,11 @@ export default {
   background-color: grey;
   height: 200px;
   text-align: center;
+  border: 5px solid black;
   border-radius: 15px;
+  font-weight: bold;
+  background: rgba(9, 10, 9, 0.5);
+  box-shadow: 0 0 25px 1px black;
 
 }
 .drop.allowed {

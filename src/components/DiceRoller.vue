@@ -21,12 +21,14 @@
 					</div>
 				</drop>
 			</div>
+			<div id="buttons">
 			<div>
 				<button id="rollbtn" v-if="rollsLeft > 0" type=button class="roll" v-on:click ="rollAll">Roll Dice</button>
 			</div>
 			<div>
 				<button id="finishbtn" v-if="rollsLeft <= 2" type=button class="finish" v-on:click ="finishRolling">Finish Rolling</button>
 			</div>
+		</div>
 		</div>
 	</div>
 </template>
@@ -190,22 +192,38 @@
 		display: inline-block;
 		vertical-align: top;
 		padding: 10px;
-		margin-bottom: 20px;
+		margin: 20px;
 		width: 540px;
-    background-color: rgba(9, 10, 9, 0.5);
+		background: rgba(9, 10, 9, 0.5);
+	  box-shadow: 0 0 25px 1px black;
+		border: 5px solid black;
 		border-radius: 15px;
 		height: 100px;
     text-align: center;
+		
 
 	}
 	#rollbtn{
-		width: 100px;
-		height: 40px;
-		margin-bottom: 10px;
+		width: 120px;
+	  height: 80px;
+		margin-bottom: 15px;
+		border-radius: 11px;
+	  box-shadow: 0 0 25px 1px black;
+		font-size: 20px;
+		display: inline-block;
+
 		}
 
 		#finishbtn{
-			width: 100px;
-			height: 40px;
+			font-size: 20px;
+			width: 120px;
+			height: 80px;
+			border-radius: 11px;
+		  box-shadow: 0 0 25px 1px black;
+			display: inline-block;
+		}
+
+		#buttons{
+			display: inline-block;
 		}
 </style>

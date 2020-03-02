@@ -2,56 +2,29 @@
 
   <div>
 
-		<!-- <div>
-			<drop v-for="player in players" class="drop" :key="player"
-      @dragover="handleDragover(player, ...arguments)"
-      @drop="handleDrop">
-					{{ player }}
-			</drop>
-		</div> -->
+    <div id="player-div">
+      <div>
+        <drop class="drop" :players="players" @drop="handleDrop0">
+          {{ players[4] }}
+        </drop>
+      </div>
 
-    <div>
-      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
-        {{ players[0] }}
-      </drop>
+
     </div>
 
-    <div>
-      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
-        {{ players[1] }}
-      </drop>
+    <div id="dice-div">
+      <div v-if="!diceRoleComplete" :key="diceRoleComplete">
+        <dice-roller></dice-roller>
+      </div>
+
+      <div v-if="diceRoleComplete" :key="diceRoleComplete">
+        <drag v-for="(die, index) in choosenDice" class="drag" :key="index" :class="{ [die]: true }"
+        :transfer-data="{ die, index } "
+        @dragstart="dragging = die"
+        @dragend="dragging = null">
+        {{ die }}
+      </drag>
     </div>
-
-    <div>
-      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
-        {{ players[2] }}
-      </drop>
-    </div>
-
-    <div>
-      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
-        {{ players[3] }}
-      </drop>
-    </div>
-
-    <div>
-      <drop class="drop" :players="players" @drop="handleDrop" @dragover="handleDragover(player, ...arguments)">
-        {{ players[4] }}
-      </drop>
-    </div>
-
-    <div v-if="!diceRoleComplete" :key="diceRoleComplete">
-      <dice-roller></dice-roller>
-    </div>
-
-    <div v-if="diceRoleComplete" :key="diceRoleComplete">
-      <drag v-for="die in choosenDice" class="drag" :key="players" :class="{ [die]: true }" :transfer-data="{ die, example: 'die' } "
-      @dragstart="dragging = die"
-      @dragend="dragging = null">
-
-      {{ die }}
-    </drag>
-    Distribute dice!
   </div>
 </div>
 
@@ -74,6 +47,7 @@ export default {
   },
   data () {
     return {
+      'activePlayer': 0,
       'choosenDice': null,
       'diceRoleComplete': false
     }
@@ -84,14 +58,46 @@ export default {
         event.dataTransfer.dropEffect = 'none';
       }
     },
-    handleDrop(data) {
-      alert(`You dropped with data: ${JSON.stringify(data)}`);
+    handleDrop0(data) {
+      alert(`You dropped a ${data.die} die at dice index ${data.index}`);
+      if(data.die === 'health') {
+        if(this.players[0].currentHealth === this.players[0].maxHealth) {
+          alert(`The player is at full health`);
+        }
+        else {
+          this.players[0].currentHealth += 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Thanks for the health man!`);
+        }
+      };
+      if(data.die === 'shoot1') {
+        if(this.players[0].currentHealth === 0) {
+          alert(`The player is already deid`);
+        }
+        else {
+          this.players[0].currentHealth -= 1;
+          this.choosenDice.splice( data.index, 1 );
+          alert(`Argh! You got me!`);
+        }
+      };
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+#player-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#dice-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  height: 500px;
+}
 .drag {
   display: inline-block;
   vertical-align: top;

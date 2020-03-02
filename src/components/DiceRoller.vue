@@ -5,17 +5,17 @@
 			<div v-for="(list, index) in dice_bags" :key="refreshFlag">
 				<drop class="drop list" @drop="handleDrop(list, ...arguments)">
 					<div v-if="rollsLeft === 3">
-						<drag v-for="(item, index1) in list" class="drag" :key="index1" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+						<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 							{{ item }}
 						</drag>
 					</div>
 					<div v-else-if="rollsLeft === 0">
-						<drag v-for="(item, index2) in list" class="drag" :key="index2" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+						<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 							{{ item }}
 						</drag>
 					</div>
 					<div v-else>
-						<drag v-for="(item, index3) in list" class="drag" :key="index3" :class="{ [item]: true }" :draggable="true" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+						<drag v-for="(item, index) in list" class="drag" :class="{ [item]: true }" :draggable="true" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 							{{ item }}
 						</drag>
 					</div>
@@ -39,15 +39,17 @@
 	export default {
 		name: 'dice-roller',
 		components: { Drag, Drop },
+		props: ['activePlayer'],
 		data() {
 			return {
 				dice_bags: [
-					['shoot1', 'shoot2', 'gatlin', 'arrow', 'health'],
+					['shoot1', 'shoot1', 'gatlin', 'arrow', 'health'],
 					[]
 				],
-				diceFaces: ['shoot1','shoot2','health','arrow','gatlin','dynamite'],
+				diceFaces: ['shoot1','shoot1','health','arrow','gatlin','dynamite'],
 				refreshFlag: 0,
-				rollsLeft: 3
+				rollsLeft: 3,
+				dynamiteCount: 0
 			};
 		},
 		methods: {
@@ -74,8 +76,28 @@
 						this.getRandomDie();
 					};
 					this.refreshFlag += 1;
+					this.dynamiteCheck();
+					// this.arrowCheck();
+
+					this.refreshFlag += 1;
 					this.rollsLeft -= 1;
 				}
+			},
+			dynamiteCheck(){
+				let dynamiteIndex = [];
+				for(const [index, die] of this.dice_bags[0].entries()){
+					console.log(`checking dynamite`, die, index);
+
+					if(die === 'dynamite') {
+						this.dynamiteCount += 1;
+						dynamiteIndex.push(index);
+						alert(`You rolled a dynamite. Oh crumbs!`)
+					};
+				};
+				for(const dynamitePoition of dynamiteIndex) {
+					this.dice_bags[0].splice(dynamitePoition, 1);
+				}
+				console.log(`dynamite to remove`, dynamiteIndex);
 			},
 			finishRolling(){
 				if(this.dice_bags[0].length > 0) {

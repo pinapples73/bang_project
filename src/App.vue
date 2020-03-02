@@ -5,12 +5,10 @@
     </div>
 
     <div v-if="gameState === 'dice-roller'">
-      <h3>Roll Yer Dice Dude!</h3>
       <dice-roller></dice-roller>
     </div>
 
     <div v-if="gameState === 'initialiseGame'">
-      <h3>Initialse Game</h3>
       <player-display :players="players"></player-display>
     </div>
 	</div>
@@ -46,8 +44,8 @@ export default {
         {
           name: 'player1',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 5,
+          currentHealth: 3,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -133,4 +131,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 </style>

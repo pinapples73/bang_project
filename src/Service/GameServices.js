@@ -1,14 +1,62 @@
-//FIRST CHECK IS IS SHREIFF DEAD 
+const sheriff = null;
 
-//IF SHERIFF IS DEAD 
-        // AND OUTLAW ALIVE = OUTLAW WIN #OUTLAWS FOR LIFE
+for(player of players){
+    if(player.role === "sheriff"){
+        sheriff = player;
+    }
+}
 
-//ELSE IF REN ALIVE AND DEPUTY ALIVE = OUTLAW WIN  #OUTLAWS FOR LIFE
+const outlaw = null; 
 
-//ELSE REN WIN!! #RENAGADE MASTER 
+    for(player of players){
+        if(player.role === "outlaw"){
+            outlaw = player;
+        }
+    }
 
-//ELSE && SHERIFF ALIVE 
-    //AND RENEGAGE/OUTLAW DEAD = LAW WIN!! #I AM THE LAW 
+const renegade = null; 
 
-// ELSE CONTIME GAME 
+    for(player of players){
+        if(player.role === "renegade"){
+            renegade = player;
+        }
+    }
 
+const deputy = null; 
+
+for(player of players){
+    if(player.roll === "deputy"){
+        deputy = player; 
+    }
+}
+
+
+const result = "";
+
+WinCondition(){
+
+if (sheriff.currentHealth <= 0){
+    if (outlaw.currentHealth>0){
+        result = "Outlaw Wins"
+    }
+}
+
+if (sheriff.currentHealth <= 0){
+    if (renegade.currentHealth > 0 && deputy.currentHealth>0){
+        result ="Outlaw Wins"
+    } 
+}
+if (sheriff.currentHealth <= 0) {
+  if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0){
+    result = "Renegade Wins";
+    } 
+}
+if (sheriff.currentHealth > 0) {
+    if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
+    result = "Law Wins";
+    }
+}
+
+
+return result;
+}

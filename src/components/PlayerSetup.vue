@@ -218,7 +218,7 @@ align-items: center;
 }
 
 .char-image {
-  width: 80px;
+  width: 100%;
   height: 180px;
   background-repeat: no-repeat;
 }
@@ -236,7 +236,7 @@ align-items: center;
 }
 
 .slab-the-killer {
-  background-image: url("../assets/images/slabkiller.png")
+  background-image: url("../assets/images/Slabkiller.png")
 }
 
 .el-gringo {

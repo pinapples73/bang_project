@@ -15,7 +15,7 @@
 						</drag>
 					</div>
 					<div v-else>
-						<drag v-for="(item, index) in list" class="drag" :class="{ [item]: true }" :draggable="true" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+						<drag v-for="(item, index) in list" class="drag" :class="{ [item]: true }" :draggable="true" :key="index" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
 							{{ item }}
 						</drag>
 					</div>

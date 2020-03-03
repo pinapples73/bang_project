@@ -78,6 +78,7 @@ export default {
     eventBus.$on("finshedRolling",(payload) => {
       this.choosenDice = payload;
       this.diceRoleComplete = true;
+      this.checkForThreeGatlins();
     });
     eventBus.$on("tooManyDynamite", () => {
       if(this.players[this.activePlayer].currentHealth > 0) {
@@ -103,11 +104,36 @@ export default {
     }
   },
   methods: {
+    checkForThreeGatlins(){
+      let gatlinCount = 0;
+      for(const die of this.choosenDice) {
+        if(die === 'gatlin') {
+          gatlinCount += 1;
+        };
+      };
+      if (gatlinCount >= 3) {
+        alert(`You have at least 3 Gatlins. All players take 1 damage!`);
+        this.gatlinDamage();
+        // TODO: move to next player if no good dice Left
+        this.dropableDiceLeft();
+      };
+    },
+    gatlinDamage(){
+      for(const player of this.players) {
+        if(player !== this.players[this.activePlayer]) {
+          if(player.currentHealth > 0) {
+            player.currentHealth -= 1;
+          };
+        };
+      };
+    },
     checkMainArrowSupply(){
+      if(this.players[this.activePlayer].currentHealth >0){
+        alert(`You got shot with an arrow`);
+      };
       if(this.mainArrowSupply === 0) {
         alert(`The main arrow supply is empty. Prepare to take arrow damage!`);
         for(const player of this.players) {
-          console.log(player);
           if(player.currentHealth > 0) {
             player.currentHealth -= player.arrowCount;
           };
@@ -116,6 +142,7 @@ export default {
           };
           if(this.players[this.activePlayer].currentHealth === 0) {
             alert(`You succummbed to arrows. You are dead! Next!!!! `)
+            eventBus.$emit(`activePlayerDiedByArrows`);
             this.moveToNextPlayer();
           }
           player.arrowCount = 0;
@@ -143,15 +170,22 @@ export default {
     },
     dropableDiceCheck() {
       let dropableDiceLeft = false;
+      let allAtFullHealth = true;
       for(const dice of this.choosenDice){
         if(dice === 'health' || dice === 'shoot1') {
-          console.log('Still have:', dice);
-          // TODO: add check for all players full health
+          for(const player of this.players) {
+            if(player.currentHealth !== player.maxHealth ) {
+              allAtFullHealth = false;
+            };
+          };
           dropableDiceLeft = true;
-        }
+        };
       };
+      // if(allAtFullHealth === true && this.dice === 'health') {
+      //   dropableDiceLeft === false;
+      // };
       if(dropableDiceLeft === false) {
-        alert(`Your turn is over.`);
+        alert(`No more dice can be used. Your turn is over.`);
         this.moveToNextPlayer();
       };
     },

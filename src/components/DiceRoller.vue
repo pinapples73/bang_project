@@ -39,6 +39,17 @@
 	export default {
 		name: 'dice-roller',
 		components: { Drag, Drop },
+		mounted(){
+			eventBus.$on(`activePlayerDiedByArrows`, () => {
+				this.dice_bags = [
+					[' ', ' ', ' ', ' ', ' '],
+					[]
+				];
+				refreshFlag = -1;
+				rollsLeft = 4;
+				totalDynamiteRolled = 0;
+			})
+		},
 		data() {
 			return {
 				dice_bags: [
@@ -113,7 +124,6 @@
 				for(const die of this.dice_bags[0]) {
 					if(die === 'arrow') {
 						eventBus.$emit('arrowRolled');
-						alert(`You got shot with an arrow`);
 					};
 				};
 			},
@@ -139,7 +149,6 @@
 		display: inline-block;
 		vertical-align: top;
 		padding: 10px;
-		/* margin-bottom: 20px; */
 		width: 80px;
 		height: 80px;
     text-align: center;

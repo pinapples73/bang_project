@@ -154,7 +154,7 @@ export default {
 <style lang="css" scoped>
 #start-game{
 background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg");
-height: 600px;
+height: 800px;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
@@ -218,7 +218,7 @@ align-items: center;
 }
 
 .char-image {
-  width: 80;
+  width: 80px;
   height: 180px;
   background-repeat: no-repeat;
 }

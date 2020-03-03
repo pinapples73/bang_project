@@ -21,6 +21,8 @@
         <p>Max Health: {{players[currentPlayer].maxHealth}}</p>
         <p>Special Ability: {{players[currentPlayer].special}}</p>
         <p>Role: {{players[currentPlayer].role}}</p>
+        <!-- <img :src="players[currentPlayer].picture" /> -->
+        <div :class="`char-image ${players[currentPlayer].className}`"> </div>
       </div>
 
       <!-- This is the Create Character button. similar to above the div will
@@ -93,6 +95,7 @@ export default {
       this.players[this.currentPlayer].maxHealth = selectedCharacter.maxHealth;
       this.players[this.currentPlayer].currentHealth = selectedCharacter.maxHealth;
       this.players[this.currentPlayer].special = selectedCharacter.special;
+      this.players[this.currentPlayer].className = selectedCharacter.className;
       //remove selected character from characters array
       //  this ensures the same character will not be choosen a second time
       // loops over the characters array and if the character equals them
@@ -212,5 +215,43 @@ align-items: center;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;
+}
+
+.char-image {
+  width: 80;
+  height: 180px;
+  background-repeat: no-repeat;
+}
+
+.bart-cassidy {
+  background-image: url("../assets/images/bartcassidy.png")
+}
+
+.paul-regret {
+  background-image: url("../assets/images/paulregret.png")
+}
+
+.black-jack {
+  background-image: url("../assets/images/blackjack.png")
+}
+
+.slab-the-killer {
+  background-image: url("../assets/images/slabkiller.png")
+}
+
+.el-gringo {
+  background-image: url("../assets/images/elgringo.png")
+}
+
+.calamity-janet {
+  background-image: url("../assets/images/calamityjanet.png")
+}
+
+.rose-doolan {
+  background-image: url("../assets/images/rosedoolan.png")
+}
+
+.black-jack {
+  background-image: url("../assets/images/blackjack.png")
 }
 </style>

@@ -141,7 +141,7 @@
 
 	}
 	.drag.shoot1 {
-		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+		background-image: url("../assets/images/shoot1.png");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -151,7 +151,7 @@
 	}
 
 	.drag.shoot2 {
-		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfTwChfcPQ_pBG40UjX3mav5l610yUeECGaNnto004dDPtmhNA');
+		background-image: url("../assets/images/shoot2.png");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -159,7 +159,7 @@
 		border-radius: 15px;
 }
 	.drag.arrow {
-		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+		background-image: url("../assets/images/arrow.png");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -167,7 +167,7 @@
 		border-radius: 15px;
 }
 	.drag.health {
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAATlBMVEX////MAADmi4vmjY3dWVnutbX43d3++Pj0zs7QHx/TNjbXWlrJAAD65ubOCQnhcnLwvr7WU1PolJTUMDDdXFzRKCj98/PdY2PmkJDrpqa0Ve5RAAABIElEQVR4nO3ZW07DMBRF0aaFAiV9ps/5T5QRxKaSkTnVWv+xzlY+72IBAAAAAAAAAAAAAAAAAGm2nyXb3vMaOO2+5u1Ovec1sByHeeOq97wGFOZTmE9hPoX5FOZTmE9hPoX5FOZTmE9hPoX5FOZTmE9hvtcvvBcL//2FdLt/qzhPhcBhmM61B/Z9D+HrqfSHWhindd/CzR8HDsNGoUKFChUqVKhQoUKFChUqVKhQoUKFChUqVNik8DLWVAKq31/6Fl4P7xWHWzHwVn/g2rXwF1bF++G997wGXv8GrDCfwnwK8ynMpzCfwnwK8ynMpzCfwnwK8ynMpzCfwnwK85ULl73nNfA4fs87PnrPa+GjpPc4AAAAAAAAAAAAAAAAAHjeD/9JKHPY46zxAAAAAElFTkSuQmCC');
+		background-image: url("../assets/images/health.png");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -175,14 +175,14 @@
 		border-radius: 15px;
 }
 	.drag.gatlin {
-		background-image: src('./images/gatlin.png');
+		background-image: url("../assets/images/gatlin.png");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
 		margin-right: 5px;
 		border-radius: 15px;}
 	.drag.zdynamite {
-		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+		background-image: url("../assets/images/dynomite.png");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;

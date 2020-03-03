@@ -114,32 +114,50 @@ export default {
   text-align: center;
 }
 .drag.shoot1 {
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKJ7di9LQDc_304Ijxz8By3atxPxkfy6kcrH5Zj9J4-IDWEyhQ');
+  background-image: url("../assets/images/shoot1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   margin-right: 10px;
   border-radius: 15px;
 }
 .drag.shoot2 {
-  background: #888;
+  background-image: url("../assets/images/shoot2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   margin-right: 10px;
   border-radius: 15px;
 }
 .drag.arrow {
-  background: #666;
+  background-image: url("../assets/images/arrow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   margin-right: 10px;
   border-radius: 15px;
 }
 .drag.health {
-  background: #444; color: #aaa;
+  background-image: url("../assets/images/health.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   margin-right: 10px;
   border-radius: 15px;
 }
 .drag.gatlin {
-  background: #222; color: #aaa;
+  background-image: url("../assets/images/gatlin.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   margin-right: 10px;
   border-radius: 15px;
 }
 .drag.dynamite {
-  background: red; color: white;
+  background-image: url("../assets/images/dynomite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   margin-right: 10px;
   border-radius: 15px;
 }

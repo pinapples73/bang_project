@@ -92,36 +92,49 @@ export default {
       characters: [
         {
           name: 'BART CASSIDY',
+          className: 'bart-cassidy',
+          picture: "./src/assets/images/bartcassidy.png",
           maxHealth: 7,
           special: 'double-damage'
         },
         {
           name: 'PAUL REGRET',
+          className: 'paul-regret',
+          picture: "./src/assets/images/paulregret.png",
           maxHealth: 9,
           special: 'no-gatlin-damage'
         },
         {
           name: 'BLACK JACK',
+          className: 'black-jack',
           maxHealth: 7,
           special: 'health-per-round'
         },
         {
           name: 'SLAB THE KILLER',
+          className: 'slab-the-killer',
+          picture: "./src/assets/images/slabkiller.png",
           maxHealth: 8,
           special: 'grim-reaper'
         },
         {
           name: 'EL GRINGO',
+          className: 'el-gringo',
+          picture: "./src/assets/images/elgringo.png",
           maxHealth: 8,
           special: 'double-health'
         },
         {
           name: 'CALAMITY JANET',
+          className: 'calamity-janet',
+          picture: "./src/assets/images/calamityjanet.png",
           maxHealth: 8,
           special: 'gatlin-double-damage'
         },
         {
           name: 'ROSE DOOLAN ',
+          className: 'rose-doolan',
+          picture: "./src/assets/images/rosedoolan.png",
           maxHealth: 9,
           special: 'extra-re-roll'
         }

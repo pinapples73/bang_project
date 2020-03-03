@@ -1,62 +1,70 @@
-const sheriff = null;
+export default{
+  winConditions(){
 
-for(player of players){
-    if(player.role === "sheriff"){
+    let sheriff = null;
+
+    for(let player of this.players){
+      // debugger;
+      if(player.role === "sheriff"){
         sheriff = player;
-    }
-}
-
-const outlaw = null; 
-
-    for(player of players){
-        if(player.role === "outlaw"){
-            outlaw = player;
-        }
+      }
     }
 
-const renegade = null; 
+    let outlaw = null;
 
-    for(player of players){
-        if(player.role === "renegade"){
-            renegade = player;
-        }
+    for(let player of this.players){
+      if(player.role === "outlaw"){
+        outlaw = player;
+      }
     }
 
-const deputy = null; 
+    let renegade = null;
 
-for(player of players){
-    if(player.roll === "deputy"){
-        deputy = player; 
+    for(let player of this.players){
+      if(player.role === "renegade"){
+        renegade = player;
+      }
     }
-}
 
+    let deputy = null;
 
-const result = "";
-
-WinCondition(){
-
-if (sheriff.currentHealth <= 0){
-    if (outlaw.currentHealth>0){
-        result = "Outlaw Wins"
+    for(let player of this.players){
+      if(player.roll === "deputy"){
+        deputy = player;
+      }
     }
-}
 
-if (sheriff.currentHealth <= 0){
-    if (renegade.currentHealth > 0 && deputy.currentHealth>0){
-        result ="Outlaw Wins"
-    } 
-}
-if (sheriff.currentHealth <= 0) {
-  if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0){
-    result = "Renegade Wins";
-    } 
-}
-if (sheriff.currentHealth > 0) {
-    if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
-    result = "Law Wins";
+
+    let result = "";
+
+    if (sheriff.currentHealth <= 0){
+      if (outlaw.currentHealth>0){
+        result = "Outlaw Wins";
+        alert(`Outlaws Win`);
+      }
     }
-}
+
+    if (sheriff.currentHealth <= 0){
+      if (renegade.currentHealth > 0 && deputy.currentHealth>0){
+        result ="Outlaw Wins";
+        alert(`Outlaws Win`);
+      }
+    }
+    if (sheriff.currentHealth <= 0) {
+      if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0){
+        result = "Renegade Wins";
+        alert(`Renegade Wins`);
+      }
+    }
+    if (sheriff.currentHealth > 0) {
+      if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
+        result = "Law Wins";
+        alert(`Law Win`);
+      }
+    }
+
+    return result;
+  }
 
 
-return result;
 }

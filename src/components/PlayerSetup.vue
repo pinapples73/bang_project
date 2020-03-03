@@ -62,7 +62,7 @@ export default {
   props:['players','characters','roles'],
   data () {
     return {
-      currentPlayer: 4,
+      currentPlayer: 0,
       nextPlayer: 0,
       playerName: "",
       nameEntered: false
@@ -130,10 +130,12 @@ export default {
     //it changes the current player variable bu one so it moves to next player
     // then it sets name NameEntered to false so the correct html divs etc are displayed
     handleNextPlayer(){
+      let startingPlayer = 0;
       //below if block checks if sheriff was assigned and increases health
       if(this.players[this.currentPlayer].role === 'sheriff') {
         this.players[this.currentPlayer].maxHealth += 2;
-        this.players[this.currentPlayer].currentHealth += 2;
+        this.players[this.currentPlayer].currentHealth -= 5;
+        startingPlayer = this.currentPlayer;
       };
 
 
@@ -143,7 +145,7 @@ export default {
       this.nameEntered = false;
 
       if(this.currentPlayer === 5){
-         eventBus.$emit("initialiseGame")
+         eventBus.$emit("initialiseGame", startingPlayer)
       }
 
     }

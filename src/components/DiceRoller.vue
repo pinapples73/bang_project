@@ -6,17 +6,17 @@
 				<drop class="drop list" @drop="handleDrop(list, ...arguments)">
 					<div v-if="rollsLeft === 3">
 						<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
-							{{ item }}
+							<!-- {{ item }} -->
 						</drag>
 					</div>
 					<div v-else-if="rollsLeft === 0">
 						<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
-							{{ item }}
+							<!-- {{ item }} -->
 						</drag>
 					</div>
 					<div v-else>
 						<drag v-for="(item, index) in list" class="drag" :class="{ [item]: true }" :draggable="true" :key="index" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
-							{{ item }}
+							<!-- {{ item }} -->
 						</drag>
 					</div>
 				</drop>
@@ -111,7 +111,6 @@
 				this.totalDynamiteRolled += dynamiteCount;
 				if (this.totalDynamiteRolled >= 3) {
 					alert(`You rolled ${this.totalDynamiteRolled} dynamite. Your turn has finished and you lose 1 health! Ya clumsy varmint!`);
-					// HERE --->
 					this.refreshFlag = 0;
 					this.rollsLeft = 4;
 					this.totalDynamiteRolled = 0;

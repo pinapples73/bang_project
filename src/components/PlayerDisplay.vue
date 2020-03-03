@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import GameServices from "../Service/GameServices.js"
 import {eventBus} from '../main.js';
 import { Drag, Drop } from 'vue-drag-drop';
 import DiceRoller from './DiceRoller.vue';
@@ -83,6 +84,7 @@ export default {
     eventBus.$on("tooManyDynamite", () => {
       if(this.players[this.activePlayer].currentHealth > 0) {
         this.players[this.activePlayer].currentHealth -= 1;
+        GameServices.winConditions();
       };
       this.choosenDice = [];
       this.moveToNextPlayer();
@@ -126,6 +128,7 @@ export default {
           };
         };
       };
+      GameServices.winConditions();
     },
     checkMainArrowSupply(){
       if(this.players[this.activePlayer].currentHealth >0){
@@ -144,11 +147,13 @@ export default {
             alert(`You succummbed to arrows. You are dead! Next!!!! `)
             eventBus.$emit(`activePlayerDiedByArrows`);
             this.moveToNextPlayer();
-          }
+          };
+
           player.arrowCount = 0;
         };
+        GameServices.winConditions();
         this.mainArrowSupply = 5;
-      }
+      };
     },
     handleDragover(group, data, event) {
       if (group !== data.group) {
@@ -214,6 +219,7 @@ export default {
           if(this.players[0].currentHealth <= 0) {
             this.players[0].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`)
+            GameServices.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -247,6 +253,7 @@ export default {
           if(this.players[1].currentHealth <= 0) {
             this.players[1].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`)
+            GameServices.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -280,6 +287,7 @@ export default {
           if(this.players[2].currentHealth <= 0) {
             this.players[2].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`)
+            GameServices.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -312,7 +320,8 @@ export default {
           this.choosenDice.splice( data.index, 1 );
           if(this.players[3].currentHealth <= 0) {
             this.players[3].currentHealth = 0;
-            alert(`Ya killed me ya no good dirty rat!`)
+            alert(`Ya killed me ya no good dirty rat!`);
+            GameServices.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -345,7 +354,8 @@ export default {
           this.choosenDice.splice( data.index, 1 );
           if(this.players[4].currentHealth <= 0) {
             this.players[4].currentHealth = 0;
-            alert(`Ya killed me ya no good dirty rat!`)
+            alert(`Ya killed me ya no good dirty rat!`);
+            GameServices.winConditions();
           } else {
             alert(`Argh! You got me!`);
           };

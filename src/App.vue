@@ -30,7 +30,7 @@ export default {
     'player-display': PlayerDisplay
   },
   mounted(){
-    eventBus.$on("initialiseGame",() => {
+    eventBus.$on("initialiseGame",(startingPlayer) => {
       this.gameState = 'initialiseGame';
     })
   },

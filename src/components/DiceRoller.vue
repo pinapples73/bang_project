@@ -39,10 +39,21 @@
 	export default {
 		name: 'dice-roller',
 		components: { Drag, Drop },
+		mounted(){
+			eventBus.$on(`activePlayerDiedByArrows`, () => {
+				this.dice_bags = [
+					[' ', ' ', ' ', ' ', ' '],
+					[]
+				];
+				refreshFlag = -1;
+				rollsLeft = 4;
+				totalDynamiteRolled = 0;
+			})
+		},
 		data() {
 			return {
 				dice_bags: [
-					['shoot1', 'shoot1', 'gatlin', 'arrow', 'health'],
+					[' ', ' ', ' ', ' ', ' '],
 					[]
 				],
 				diceFaces: ['shoot1','shoot1','health','arrow','gatlin','zdynamite'],
@@ -74,8 +85,9 @@
 					for (let index = 0; index < rollRequired; index++) {
 						this.getRandomDie();
 					};
+					this.arrowCheck();
 					this.dynamiteCheck();
-					// this.arrowCheck();
+
 
 					this.refreshFlag += 1;
 					this.rollsLeft -= 1;
@@ -84,8 +96,6 @@
 			dynamiteCheck(){
 				let dynamiteCount = 0;
 				for(const [index, die] of this.dice_bags[0].entries()){
-					console.log(`checking dynamite`, die, index);
-
 					if(die === 'zdynamite') {
 						dynamiteCount += 1;
 						alert(`You rolled a dynamite. Oh crumbs!`)
@@ -98,14 +108,24 @@
 
 				this.totalDynamiteRolled += dynamiteCount;
 				if (this.totalDynamiteRolled >= 3) {
-
 					alert(`You rolled ${this.totalDynamiteRolled} dynamite. Your turn has finished and you lose 1 health! Ya clumsy varmint!`);
-					// this.players[this.activePlayer].currentHealth -= 1;
-
+					// HERE --->
+					this.refreshFlag = 0;
+					this.rollsLeft = 4;
+					this.totalDynamiteRolled = 0;
+					this.dice_bags = [
+						[' ', ' ', ' ', ' ', ' '],
+						[]
+					]
 					eventBus.$emit('tooManyDynamite');
-
 				}
-				console.log(`dynamite left:`, this.dice_bags[0]);
+			},
+			arrowCheck(){
+				for(const die of this.dice_bags[0]) {
+					if(die === 'arrow') {
+						eventBus.$emit('arrowRolled');
+					};
+				};
 			},
 			finishRolling(){
 				if(this.dice_bags[0].length > 0) {
@@ -119,10 +139,7 @@
 
 				const payload = this.dice_bags[1];
 				eventBus.$emit("finshedRolling", payload);
-				console.log(`DICE BAGS!!!!`);
-				// debugger;
 			}
-
 		},
 	};
 </script>
@@ -132,7 +149,6 @@
 		display: inline-block;
 		vertical-align: top;
 		padding: 10px;
-		/* margin-bottom: 20px; */
 		width: 80px;
 		height: 80px;
     text-align: center;

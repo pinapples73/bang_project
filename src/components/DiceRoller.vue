@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div>
-			<p :key="refreshFlag">Rolls Left: {{ rollsLeft }}  Dynamite Count: {{totalDynamiteRolled}}</p>
+			<p id="count-box":key="refreshFlag">Rolls Left: {{ rollsLeft }}   Dynamite Count: {{totalDynamiteRolled}}</p>
 			<div v-for="(list, index) in dice_bags" :key="refreshFlag">
 				<drop class="drop list" @drop="handleDrop(list, ...arguments)">
 					<div v-if="rollsLeft === 3">
@@ -209,7 +209,7 @@
 		vertical-align: top;
 		padding: 10px;
 		margin: 20px;
-		width: 540px;
+		width: 600px;
 		background: rgba(9, 10, 9, 0.5);
 	  box-shadow: 0 0 25px 1px black;
 		border: 5px solid black;
@@ -222,24 +222,66 @@
 	#rollbtn{
 		width: 120px;
 	  height: 80px;
-		margin-bottom: 15px;
-		border-radius: 11px;
+	  margin-top: 15px;
+		margin-right: 20px;
+	  border-radius: 11px;
 	  box-shadow: 0 0 25px 1px black;
-		font-size: 20px;
-		display: inline-block;
-
-		}
+	  font-size: 20px;
+	  background-color: rgba(156, 155, 153, 0.5);
+	  border: 5px solid black;
+	}
+	#rollbtn:hover{
+	  width: 120px;
+	  height: 80px;
+	  margin-top: 15px;
+	  border-radius: 11px;
+	  box-shadow: 0 0 25px 1px black;
+	  font-size: 20px;
+	  background-color: rgba(39, 38, 37, 0.5);
+	  border: 5px solid black;
+	}
 
 		#finishbtn{
-			font-size: 20px;
 			width: 120px;
-			height: 80px;
-			border-radius: 11px;
+		  height: 80px;
+		  margin-top: 15px;
+		  border-radius: 11px;
 		  box-shadow: 0 0 25px 1px black;
-			display: inline-block;
+		  font-size: 20px;
+		  background-color: rgba(156, 155, 153, 0.5);
+		  border: 5px solid black;
+		}
+		#finishbtn:hover{
+		  width: 120px;
+		  height: 80px;
+		  margin-top: 15px;
+		  border-radius: 11px;
+		  box-shadow: 0 0 25px 1px black;
+		  font-size: 20px;
+		  background-color: rgba(39, 38, 37, 0.5);
+		  border: 5px solid black;
+		}
+		#buttons{
+			display: flex;
+			margin: 0 auto;
+			justify-content: center
 		}
 
-		#buttons{
-			display: inline-block;
+		#count-box{
+
+			background: rgba(9, 10, 9, 0.5);
+		  box-shadow: 0 0 25px 1px black;
+			border: 5px solid black;
+			border-radius: 15px;
+			height: 50px;
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			padding: 1% ;
+			vertical-align: middle;
+			display: flex;
+ 			justify-content: center;
+ 			align-items: center;
 		}
+
 </style>

@@ -453,9 +453,11 @@ export default {
 }
 #whole-game{
 background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg");
-height: 100%;
+height: 1000px;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 }
+
+
 </style>

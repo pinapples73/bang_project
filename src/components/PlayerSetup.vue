@@ -257,10 +257,12 @@ align-items: center;
 }
 
 .char-image {
-  width: 100%;
+  width: 200px;
   height: 180px;
   background-repeat: no-repeat;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 

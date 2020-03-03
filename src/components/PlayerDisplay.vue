@@ -107,18 +107,20 @@ export default {
       if(this.mainArrowSupply === 0) {
         alert(`The main arrow supply is empty. Prepare to take arrow damage!`);
         for(const player of this.players) {
-          debugger;
           console.log(player);
           if(player.currentHealth > 0) {
             player.currentHealth -= player.arrowCount;
           };
           if(player.currentHealth <= 0) {
             player.currentHealth = 0;
-            // TODO: check if roller is dead - and move onto next player
           };
+          if(this.players[this.activePlayer].currentHealth === 0) {
+            alert(`You succummbed to arrows. You are dead! Next!!!! `)
+            this.moveToNextPlayer();
+          }
           player.arrowCount = 0;
         };
-        this.mainArrowSupply = 10;
+        this.mainArrowSupply = 5;
       }
     },
     handleDragover(group, data, event) {

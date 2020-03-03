@@ -9,7 +9,7 @@
       <h1>Setup {{players[currentPlayer].name}}</h1>
 
       <div id="enter-name">
-        <label for="name">Enter Name:  </label>
+        <label for="name">Enter Name</label>
         <input type="text" id="playerName" name="playerName" v-model="players[currentPlayer].name" required/>
       </div>
 
@@ -156,7 +156,7 @@ export default {
 <style lang="css" scoped>
 #start-game{
 background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg");
-height: 800px;
+height: 900px;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
@@ -207,7 +207,18 @@ align-items: center;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;
-
+  background-color: rgba(156, 155, 153, 0.5);
+  border: 5px solid black;
+}
+#name-enter:hover{
+  width: 120px;
+  height: 80px;
+  margin-top: 15px;
+  border-radius: 11px;
+  box-shadow: 0 0 25px 1px black;
+  font-size: 20px;
+  background-color: rgba(39, 38, 37, 0.5);
+  border: 5px solid black;
 }
 
 #next-player{
@@ -217,43 +228,118 @@ align-items: center;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;
+  background-color: rgba(156, 155, 153, 0.5);
+  border: 5px solid black;
+}
+
+#next-player:hover{
+  width: 120px;
+  height: 80px;
+  margin-top: 15px;
+  border-radius: 11px;
+  box-shadow: 0 0 25px 1px black;
+  font-size: 20px;
+  background-color: rgba(39, 38, 37, 0.5);
+  border: 5px solid black;
+}
+
+#playerName{
+  width: 75%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 20px;
+  background-color: rgba(218, 223, 218, 0.4);
+  color: black;
+  border: 5px solid black;
+  border-radius: 4px;
 }
 
 .char-image {
   width: 100%;
   height: 180px;
   background-repeat: no-repeat;
+
+
 }
 
 .bart-cassidy {
-  background-image: url("../assets/images/bartcassidy.png")
+  background-image: url("../assets/images/bartcassidy.png");
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .paul-regret {
-  background-image: url("../assets/images/paulregret.png")
+  background-image: url("../assets/images/paulregret.png");
+  border: 5px solid black;
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .black-jack {
-  background-image: url("../assets/images/blackjack.png")
+  background-image: url("../assets/images/blackjack.png");
+  border: 5px solid black;
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slab-the-killer {
-  background-image: url("../assets/images/Slabkiller.png")
+  background-image: url("../assets/images/Slabkiller.png");
+  border: 5px solid black;
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .el-gringo {
-  background-image: url("../assets/images/elgringo.png")
+  background-image: url("../assets/images/elgringo.png");
+  border: 5px solid black;
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .calamity-janet {
-  background-image: url("../assets/images/calamityjanet.png")
+  background-image: url("../assets/images/calamityjanet.png");
+  border: 5px solid black;
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rose-doolan {
-  background-image: url("../assets/images/rosedoolan.png")
+  background-image: url("../assets/images/rosedoolan.png");
+  border: 5px solid black;
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .black-jack {
-  background-image: url("../assets/images/blackjack.png")
+  background-image: url("../assets/images/blackjack.png");
+  border: 5px solid black;
+  border: 5px solid black;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

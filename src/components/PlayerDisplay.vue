@@ -84,7 +84,7 @@ export default {
     eventBus.$on("tooManyDynamite", () => {
       if(this.players[this.activePlayer].currentHealth > 0) {
         this.players[this.activePlayer].currentHealth -= 1;
-        GameServices.winConditions();
+        this.winConditions();
       };
       this.choosenDice = [];
       this.moveToNextPlayer();
@@ -128,7 +128,73 @@ export default {
           };
         };
       };
-      GameServices.winConditions();
+      this.winConditions();
+    },
+    winConditions(){
+
+      let sheriff = null;
+
+      for(let player of this.players){
+        // debugger;
+        if(player.role === "sheriff"){
+          sheriff = player;
+        }
+      }
+
+      let outlaw = null;
+
+      for(let player of this.players){
+        if(player.role === "outlaw"){
+          outlaw = player;
+        }
+      }
+
+      let renegade = null;
+
+      for(let player of this.players){
+        if(player.role === "renegade"){
+          renegade = player;
+        }
+      }
+
+      let deputy = null;
+
+      for(let player of this.players){
+        if(player.roll === "deputy"){
+          deputy = player;
+        }
+      }
+
+
+      let result = "";
+
+      if (sheriff.currentHealth <= 0){
+        if (outlaw.currentHealth>0){
+          result = "Outlaw Wins";
+          alert(`Outlaws Win`);
+        }
+      }
+
+      if (sheriff.currentHealth <= 0){
+        if (renegade.currentHealth > 0 && deputy.currentHealth>0){
+          result ="Outlaw Wins";
+          alert(`Outlaws Win`);
+        }
+      }
+      if (sheriff.currentHealth <= 0) {
+        if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0){
+          result = "Renegade Wins";
+          alert(`Renegade Wins`);
+        }
+      }
+      if (sheriff.currentHealth > 0) {
+        if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
+          result = "Law Wins";
+          alert(`Law Win`);
+        }
+      }
+
+      return result;
     },
     checkMainArrowSupply(){
       if(this.players[this.activePlayer].currentHealth >0){
@@ -151,7 +217,7 @@ export default {
 
           player.arrowCount = 0;
         };
-        GameServices.winConditions();
+        this.winConditions();
         this.mainArrowSupply = 5;
       };
     },
@@ -219,7 +285,7 @@ export default {
           if(this.players[0].currentHealth <= 0) {
             this.players[0].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`)
-            GameServices.winConditions();
+            this.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -253,7 +319,7 @@ export default {
           if(this.players[1].currentHealth <= 0) {
             this.players[1].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`)
-            GameServices.winConditions();
+            this.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -287,7 +353,7 @@ export default {
           if(this.players[2].currentHealth <= 0) {
             this.players[2].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`)
-            GameServices.winConditions();
+            this.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -321,7 +387,7 @@ export default {
           if(this.players[3].currentHealth <= 0) {
             this.players[3].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`);
-            GameServices.winConditions();
+            this.winConditions();
           } else {
             alert(`Argh! You got me!`);
           }
@@ -355,7 +421,7 @@ export default {
           if(this.players[4].currentHealth <= 0) {
             this.players[4].currentHealth = 0;
             alert(`Ya killed me ya no good dirty rat!`);
-            GameServices.winConditions();
+            this.winConditions();
           } else {
             alert(`Argh! You got me!`);
           };

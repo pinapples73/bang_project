@@ -18,9 +18,6 @@
 <script>
 import PlayerSetup from "./components/PlayerSetup.vue";
 import DiceRoller from "./components/DiceRoller.vue";
-import DragImage from './components/DragImage.vue';
-import DragHtml from './components/DragHtml.vue';
-import DropEffects from './components/DropEffects.vue';
 import PlayerDisplay from './components/PlayerDisplay.vue';
 import {eventBus} from './main.js';
 export default {
@@ -33,19 +30,17 @@ export default {
   mounted(){
     eventBus.$on("initialiseGame",() => {
       this.gameState = 'initialiseGame';
-      console.log("XXXXXX")
     })
   },
   data (){
     return {
       gameState: 'player-setup',
-      mainArrowSupply: 15,
       players: [
         {
           name: 'player1',
           arrowCount: 0,
           maxHealth: 5,
-          currentHealth: 3,
+          currentHealth: 1,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -53,8 +48,8 @@ export default {
         {
           name: 'player2',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 4,
+          currentHealth: 1,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -62,8 +57,8 @@ export default {
         {
           name: 'player3',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 7,
+          currentHealth: 5,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -71,8 +66,8 @@ export default {
         {
           name: 'player4',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 2,
+          currentHealth: 1,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'
@@ -80,8 +75,8 @@ export default {
         {
           name: 'player5',
           arrowCount: 0,
-          maxHealth: 0,
-          currentHealth: 0,
+          maxHealth: 6,
+          currentHealth: 2,
           character: 'unknown',
           role: 'unknown',
           special: 'unknown'

@@ -5,7 +5,9 @@
     <div v-if="diceRoleComplete" :key="diceRoleComplete" id="player-div">
       <div>
         <drop class="drop" :players="players" @drop="handleDrop0">
-          {{ players[0] }}
+          <p>{{ players[0].character }}</p>
+          <p>Arrows: {{ players[0].arrowCount}}</p>
+          <p>Health: {{ players[0].currentHealth}}</p>
         </drop>
       </div>
       <div>

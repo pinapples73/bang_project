@@ -169,7 +169,7 @@ align-items: center;
   margin: auto;
   box-sizing: border-box;
   align-items: center;
-  width: 25%;
+  width: 300px;
   border: 5px solid black;
   margin: 15 auto;
   border-radius: 15px;
@@ -178,6 +178,10 @@ align-items: center;
   box-shadow: 0 0 25px 1px black;
   margin-bottom: 20px;
   padding: 50px 20px 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #assigned-char{
@@ -186,7 +190,7 @@ align-items: center;
   margin: auto;
   box-sizing: border-box;
   align-items: center;
-  width: 25%;
+  width: 300px;
   border: 5px solid black;
   margin: 15 auto;
   border-radius: 15px;
@@ -194,6 +198,10 @@ align-items: center;
   background: rgba(9, 10, 9, 0.5);
   box-shadow: 0 0 25px 1px black;
   padding: 20px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 #player-setup{
   text-align: center;
@@ -257,13 +265,9 @@ align-items: center;
 }
 
 .char-image {
-  width: 200px;
-  height: 180px;
+  width: 240px;
+  height: 200px;
   background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
 }
 
 .bart-cassidy {
@@ -337,8 +341,8 @@ align-items: center;
 
 .black-jack {
   background-image: url("../assets/images/blackjack.png");
-  border: 5px solid black;
-  border: 5px solid black;
+  /* border: 5px solid black; */
+  border: 10px solid red;
   vertical-align: middle;
   display: flex;
   justify-content: center;

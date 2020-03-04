@@ -142,6 +142,17 @@ export default {
 
 <style lang="css" scoped>
 
+#game_window {
+  /* background-color: grey; */
+  height: 100%;
+  padding: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./assets/images/background.jpg');
+  /* background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg"); */
+}
+
 
 
 </style>

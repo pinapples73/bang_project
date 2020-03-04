@@ -12,41 +12,59 @@
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop1">
-          {{ players[1] }}
+          <p>{{ players[1].character }}</p>
+          <p>Arrows: {{ players[1].arrowCount}}</p>
+          <p>Health: {{ players[1].currentHealth}}</p>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop2">
-          {{ players[2] }}
+          <p>{{ players[2].character }}</p>
+          <p>Arrows: {{ players[2].arrowCount}}</p>
+          <p>Health: {{ players[2].currentHealth}}</p>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop3">
-          {{ players[3] }}
+          <p>{{ players[3].character }}</p>
+          <p>Arrows: {{ players[3].arrowCount}}</p>
+          <p>Health: {{ players[3].currentHealth}}</p>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop4">
-          {{ players[4] }}
+          <p>{{ players[4].character }}</p>
+          <p>Arrows: {{ players[4].arrowCount}}</p>
+          <p>Health: {{ players[4].currentHealth}}</p>
         </drop>
       </div>
     </div>
 
     <div v-if="!diceRoleComplete" :key="diceRoleComplete" id="player-div2">
       <div class="drop">
-          {{ players[0] }}
+        <p>{{ players[0].character }}</p>
+        <p>Arrows: {{ players[0].arrowCount}}</p>
+        <p>Health: {{ players[0].currentHealth}}</p>
       </div>
       <div class="drop">
-          {{ players[1] }}
+        <p>{{ players[1].character }}</p>
+        <p>Arrows: {{ players[1].arrowCount}}</p>
+        <p>Health: {{ players[1].currentHealth}}</p>
       </div>
       <div class="drop">
-          {{ players[2] }}
+        <p>{{ players[2].character }}</p>
+        <p>Arrows: {{ players[2].arrowCount}}</p>
+        <p>Health: {{ players[2].currentHealth}}</p>
       </div>
       <div class="drop">
-          {{ players[3] }}
+        <p>{{ players[3].character }}</p>
+        <p>Arrows: {{ players[3].arrowCount}}</p>
+        <p>Health: {{ players[3].currentHealth}}</p>
       </div>
       <div class="drop">
-          {{ players[4] }}
+        <p>{{ players[4].character }}</p>
+        <p>Arrows: {{ players[4].arrowCount}}</p>
+        <p>Health: {{ players[4].currentHealth}}</p>
       </div>
     </div>
 
@@ -530,11 +548,8 @@ export default {
 		background-color: #dfd;
 }
 #whole-game{
-background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg");
-height: 1000px;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
+  height: 840px;
+  padding: 20px;
 }
 
 

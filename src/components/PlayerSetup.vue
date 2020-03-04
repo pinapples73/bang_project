@@ -6,7 +6,7 @@
     if current player is 5 or more it will not show up
     as setup of players would be complete-->
     <div id="player-setup" :key="currentPlayer" v-if="(currentPlayer) < 5">
-      <h1>Setup {{players[currentPlayer].name}}</h1>
+      <h2>Create Your Character</h2>
 
       <div id="enter-name">
         <label for="name">Enter Name</label>
@@ -17,12 +17,13 @@
       <!-- if chcks if variable NameEntered is true and if it is it displays
       the div-->
       <div id="assigned-char" v-if="nameEntered" :key="nameEntered">
-        <p>Character: {{players[currentPlayer].character}}</p>
-        <p>Max Health: {{players[currentPlayer].maxHealth}}</p>
-        <p>Special Ability: {{players[currentPlayer].special}}</p>
+        <h3>{{players[currentPlayer].character}}</h3>
+        <div :class="`char-image ${players[currentPlayer].className}`"> </div>
+        <br>Max Health: {{players[currentPlayer].maxHealth}}</br>
+        <!-- <p>Special Ability: {{players[currentPlayer].special}}</p> -->
         <p>Role: {{players[currentPlayer].role}}</p>
         <!-- <img :src="players[currentPlayer].picture" /> -->
-        <div :class="`char-image ${players[currentPlayer].className}`"> </div>
+        <!-- <div :class="`char-image ${players[currentPlayer].className}`"> </div> -->
       </div>
 
       <!-- This is the Create Character button. similar to above the div will
@@ -155,13 +156,8 @@ export default {
 
 <style lang="css" scoped>
 #start-game{
-background-image: url("https://image.shutterstock.com/image-illustration/grunge-background-wild-west-landscape-260nw-16340476.jpg");
-height: 900px;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-align-items: center;
-
+  height: 840px;
+  padding: 20px;
 }
 #enter-name{
   font-size: 25px;
@@ -170,14 +166,14 @@ align-items: center;
   box-sizing: border-box;
   align-items: center;
   width: 300px;
-  border: 5px solid black;
+  /* border: 5px solid #8A573E; */
   margin: 15 auto;
   border-radius: 15px;
   padding: 10px 10px 5px 5px;
-  background: rgba(9, 10, 9, 0.5);
+  background: rgba(195, 147, 80, 0.5);
   box-shadow: 0 0 25px 1px black;
   margin-bottom: 20px;
-  padding: 50px 20px 50px 20px;
+  /* padding: 50px 20px 50px 20px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,19 +181,20 @@ align-items: center;
 }
 
 #assigned-char{
-  font-size: 18px;
+  font-size: 21px;
   font-weight: bold;
   margin: auto;
   box-sizing: border-box;
   align-items: center;
   width: 300px;
-  border: 5px solid black;
+  height: 400px;
+  border: 5px;
+  /* border-color: #A17538; */
   margin: 15 auto;
   border-radius: 15px;
-  padding: 10px 10px 5px 5px;
-  background: rgba(9, 10, 9, 0.5);
+  padding: 5px;
+  background: rgba(195, 147, 80, 0.5);
   box-shadow: 0 0 25px 1px black;
-  padding: 20px 20px 20px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,8 +212,8 @@ align-items: center;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;
-  background-color: rgba(156, 155, 153, 0.5);
-  border: 5px solid black;
+  background-color: rgba(100, 100, 100, 0.5);
+  border: 5px solid grey;
 }
 #name-enter:hover{
   width: 120px;
@@ -225,19 +222,8 @@ align-items: center;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;
-  background-color: rgba(39, 38, 37, 0.5);
-  border: 5px solid black;
-}
-
-#next-player{
-  width: 120px;
-  height: 80px;
-  margin-top: 15px;
-  border-radius: 11px;
-  box-shadow: 0 0 25px 1px black;
-  font-size: 20px;
   background-color: rgba(156, 155, 153, 0.5);
-  border: 5px solid black;
+  border: 5px solid grey;
 }
 
 #next-player:hover{
@@ -247,8 +233,19 @@ align-items: center;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;
-  background-color: rgba(39, 38, 37, 0.5);
-  border: 5px solid black;
+  background-color: rgba(156, 155, 153, 0.5);
+  border: 5px solid grey;
+}
+
+#next-player{
+  width: 120px;
+  height: 80px;
+  margin-top: 15px;
+  border-radius: 11px;
+  box-shadow: 0 0 25px 1px black;
+  font-size: 20px;
+  background-color: rgba(100, 100, 100, 0.5);
+  border: 5px solid grey;
 }
 
 #playerName{
@@ -258,9 +255,9 @@ align-items: center;
   box-sizing: border-box;
   text-align: center;
   font-size: 20px;
-  background-color: rgba(218, 223, 218, 0.4);
+  background-color: rgba(255, 255, 255, 0.4);
   color: black;
-  border: 5px solid black;
+  border: 5px solid #A17538;
   border-radius: 4px;
 }
 
@@ -282,22 +279,12 @@ align-items: center;
 .paul-regret {
   background-image: url("../assets/images/paulregret.png");
   border: 5px solid black;
-  border: 5px solid black;
   vertical-align: middle;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.black-jack {
-  background-image: url("../assets/images/blackjack.png");
-  border: 5px solid black;
-  border: 5px solid black;
-  vertical-align: middle;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .slab-the-killer {
   background-image: url("../assets/images/Slabkiller.png");
@@ -312,7 +299,6 @@ align-items: center;
 .el-gringo {
   background-image: url("../assets/images/elgringo.png");
   border: 5px solid black;
-  border: 5px solid black;
   vertical-align: middle;
   display: flex;
   justify-content: center;
@@ -321,7 +307,6 @@ align-items: center;
 
 .calamity-janet {
   background-image: url("../assets/images/calamityjanet.png");
-  border: 5px solid black;
   border: 5px solid black;
   vertical-align: middle;
   display: flex;
@@ -332,7 +317,6 @@ align-items: center;
 .rose-doolan {
   background-image: url("../assets/images/rosedoolan.png");
   border: 5px solid black;
-  border: 5px solid black;
   vertical-align: middle;
   display: flex;
   justify-content: center;
@@ -342,7 +326,7 @@ align-items: center;
 .black-jack {
   background-image: url("../assets/images/blackjack.png");
   /* border: 5px solid black; */
-  border: 10px solid red;
+  border: 5px solid black;
   vertical-align: middle;
   display: flex;
   justify-content: center;

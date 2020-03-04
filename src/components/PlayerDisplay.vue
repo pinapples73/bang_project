@@ -123,6 +123,12 @@
     </div>
   </transition>
 
+  <transition name="fade">
+    <div v-if="finalMessageUpdate" class="final-message-box" >
+      {{finalMessageText}}
+    </div>
+  </transition>
+
 </div>
 
 </template>
@@ -174,7 +180,9 @@ export default {
       activePlayer:0,
       mainArrowSupply: 5,
       messageText: '',
-      messageUpdate: false
+      messageUpdate: false,
+      finalMessageText: '',
+      finalMessageUpdate: false
     }
   },
   methods: {
@@ -182,6 +190,13 @@ export default {
       this.messageText = text;
       this.messageUpdate = true;
       setTimeout(() => { this.messageUpdate = false; }, 1000);
+    },
+    displayFinalMessage(text2) {
+      this.messageText = "";
+      this.messageUpdate = false;
+      this.finalMessageText = text2;
+      this.finalMessageUpdate = true;
+      setTimeout(() => { this.finalMessageUpdate = false; }, 2000);
     },
     checkForThreeGatlins(){
       let gatlinCount = 0;
@@ -237,31 +252,36 @@ export default {
       if (renegade.currentHealth >= 1) {
         if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0 && sheriff.currentHealth <= 0){
           result = "Renegade Wins";
-          this.displayMessage('Renegade Wins');
+          this.displayFinalMessage(result);
+          setTimeout(() => { console.log('game over'); }, 5000);
         }
       }
       if (sheriff.currentHealth >= 1) {
         if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
           result = "Law Wins";
-          this.displayMessage('Law Win');
+          this.displayFinalMessage(result);
+          setTimeout(() => { console.log('game over'); }, 5000);
         }
       }
       if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
         if (outlaw.currentHealth >= 1 && renegade.currentHealth >= 1 && deputy.currentHealth >= 1){
           result = "Outlaw Wins";
-          this.displayMessage('Outlaws Win');
+          this.displayFinalMessage(result);
+          setTimeout(() => { console.log('game over'); }, 5000);
         }
       }
        if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
         if (renegade.currentHealth >= 1 && deputy.currentHealth >= 1 && outlaw.currentHealth <=0){
           result ="Outlaw Wins";
-          this.displayMessage('Outlaws Win');
+          this.displayFinalMessage(result);
+          setTimeout(() => { console.log('game over'); }, 5000);
         }
       }
       if(sheriff.currentHealth<= 0){
         if(renegade.currentHealth <= 0 && deputy.currentHealth <= 0 && outlaw.currentHealth <=0){
           result = "Draw";
-          this.displayMessage('Violence is not the answer ! ')
+          this.displayFinalMessage(result);
+          setTimeout(() => { console.log('game over'); }, 5000);
         }
       }
       return result;
@@ -540,6 +560,19 @@ transform: translate(-50%,-50%);
 -ms-transform: translate(-50%,-50%);
 -webkit-text-stroke-width: 2px;
 -webkit-text-stroke-color: black;
+}
+
+.final-message-box {
+position: absolute;
+text-align:center;
+top: 700px;
+left: 50%;
+font-size: 200px;
+color: red;
+transform: translate(-50%,-50%);
+-ms-transform: translate(-50%,-50%);
+-webkit-text-stroke-width: 5px;
+-webkit-text-stroke-color: white;
 }
 
 

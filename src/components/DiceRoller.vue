@@ -109,7 +109,7 @@
 				for(const [index, die] of this.dice_bags[0].entries()){
 					if(die === 'zdynamite') {
 						dynamiteCount += 1;
-						const alert = ("You rolled a dynamite.");
+						const alert = ("You rolled dynamite.");
 						eventBus.$emit("sendMessage", alert);
 						setTimeout(() => {console.log('message tester');}, 2000);
 					};

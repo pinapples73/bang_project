@@ -1,7 +1,7 @@
 <template>
 
   <div id="whole-game">
-
+    <p id="arrow-supply">Arrow Supply: {{mainArrowSupply}}</p>
 
     <div v-if="diceRoleComplete" :key="diceRoleComplete" id="player-div">
       <div>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <p id="arrow-supply">Arrow Supply: {{mainArrowSupply}}</p>
+
 
     <div v-if="!diceRoleComplete" :key="diceRoleComplete" id="player-div2">
       <div class="drop">
@@ -107,12 +107,14 @@
       </div>
 
       <div v-if="diceRoleComplete" :key="diceRoleComplete">
-        <drag v-for="(die, index) in choosenDice" class="drag" :key="index" :class="{ [die]: true }"
-        :transfer-data="{ die, index } "
-        @dragstart="dragging = die"
-        @dragend="dragging = null">
-        <!-- {{ die }} -->
-      </drag>
+        <div id="dragDice">
+          <drag v-for="(die, index) in choosenDice" class="drag" :key="index" :class="{ [die]: true }"
+          :transfer-data="{ die, index } "
+          @dragstart="dragging = die"
+          @dragend="dragging = null">
+          </drag>
+      </div>
+      <p id="standardText">Assign your dice pardner!</p>
     </div>
   </div>
 </div>
@@ -487,6 +489,25 @@ export default {
 
 <style lang="css" scoped>
 
+#dragDice {
+  padding: 10px;
+  margin: 20px;
+  width: 600px;
+  background: rgba(9, 10, 9, 0.5);
+  box-shadow: 0 0 25px 1px black;
+  border: 5px solid black;
+  border-radius: 15px;
+  height: 100px;
+  text-align: center;
+}
+
+#standardText{
+  font-size: 47px;
+  color: #990033;
+  text-shadow: 3px 3px #ffffff;
+  text-align: center;
+}
+
 #arrow-supply{
   font-size: 47px;
   color: #990033;
@@ -550,7 +571,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   height: 400px;
 }
 .drag {

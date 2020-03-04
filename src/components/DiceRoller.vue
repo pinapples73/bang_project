@@ -109,7 +109,9 @@
 				for(const [index, die] of this.dice_bags[0].entries()){
 					if(die === 'zdynamite') {
 						dynamiteCount += 1;
-						alert(`You rolled a dynamite. Oh crumbs!`)
+						const alert = ("You rolled a dynamite.");
+						eventBus.$emit("sendMessage", alert);
+						setTimeout(() => {console.log('message tester');}, 2000);
 					};
 				};
 				this.dice_bags[0].sort();
@@ -119,7 +121,8 @@
 
 				this.totalDynamiteRolled += dynamiteCount;
 				if (this.totalDynamiteRolled >= 3) {
-					alert(`You rolled ${this.totalDynamiteRolled} dynamite. Your turn has finished and you lose 1 health! Ya clumsy varmint!`);
+					eventBus.$emit("sendMessage", "You rolled too many dynamite!");
+					setTimeout(() => {console.log('message tester');}, 2000);
 					this.refreshFlag = 0;
 					this.rollsLeft = 4;
 					this.totalDynamiteRolled = 0;
@@ -128,6 +131,7 @@
 						[]
 					]
 					eventBus.$emit('tooManyDynamite');
+
 				}
 			},
 			arrowCheck(){

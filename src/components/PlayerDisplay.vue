@@ -114,11 +114,10 @@
           @dragend="dragging = null">
           </drag>
       </div>
-      <p id="standardText">Assign your dice partner!</p>
     </div>
   </div>
 
-  <transition name="tray">
+  <transition name="fade">
     <div v-if="messageUpdate" class="message-box" >
       {{messageText}}
     </div>
@@ -159,7 +158,13 @@ export default {
       this.checkMainArrowSupply();
     });
 
+    eventBus.$on("sendMessage", (payload) => {
+      this.displayMessage(payload);
+    });
+
     this.displayMessage('Hi!');
+    setTimeout(() => { this.displayMessage("Let's Play!"); }, 2000);
+
 
   },
   data () {
@@ -176,6 +181,7 @@ export default {
     displayMessage(text) {
       this.messageText = text;
       this.messageUpdate = true;
+      setTimeout(() => { this.messageUpdate = false; }, 1000);
     },
     checkForThreeGatlins(){
       let gatlinCount = 0;
@@ -185,9 +191,9 @@ export default {
         };
       };
       if (gatlinCount >= 3) {
-        alert(`You have at least 3 Gatlins. All players take 1 damage!`);
+        // alert(`You have at least 3 Gatlins. All players take 1 damage!`);
+        this.displayMessage("3 gatlins!");
         this.gatlinDamage();
-        // TODO: move to next player if no good dice Left
         this.dropableDiceLeft();
       };
     },
@@ -231,41 +237,43 @@ export default {
       if (renegade.currentHealth >= 1) {
         if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0 && sheriff.currentHealth <= 0){
           result = "Renegade Wins";
-          alert('Renegade Wins');
+          this.displayMessage('Renegade Wins');
         }
       }
       if (sheriff.currentHealth >= 1) {
         if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
           result = "Law Wins";
-          alert('Law Win');
+          this.displayMessage('Law Win');
         }
       }
       if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
         if (outlaw.currentHealth >= 1 && renegade.currentHealth >= 1 && deputy.currentHealth >= 1){
           result = "Outlaw Wins";
-          alert('Outlaws Win');
+          this.displayMessage('Outlaws Win');
         }
       }
        if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
         if (renegade.currentHealth >= 1 && deputy.currentHealth >= 1 && outlaw.currentHealth <=0){
           result ="Outlaw Wins";
-          alert('Outlaws Win');
+          this.displayMessage('Outlaws Win');
         }
       }
       if(sheriff.currentHealth<= 0){
         if(renegade.currentHealth <= 0 && deputy.currentHealth <= 0 && outlaw.currentHealth <=0){
           result = "Draw";
-          alert('Violence is not the answer ! ')
+          this.displayMessage('Violence is not the answer ! ')
         }
       }
       return result;
     },
     checkMainArrowSupply(){
       if(this.players[this.activePlayer].currentHealth >0){
-        alert(`You got shot with an arrow`);
+        // this.displayMessage(`You got shot with an arrow`);
+        this.displayMessage("You got shot with an arrow!");
       };
       if(this.mainArrowSupply === 0) {
-        alert(`The main arrow supply is empty. Prepare to take arrow damage!`);
+        // alert(`Arrow supply empty. Take arrow damage!`);
+        this.displayMessage("Arrow supply empty. Take arrow damage!");
         for(const player of this.players) {
           if(player.currentHealth > 0) {
             player.currentHealth -= player.arrowCount;
@@ -274,7 +282,8 @@ export default {
             player.currentHealth = 0;
           };
           if(this.players[this.activePlayer].currentHealth === 0) {
-            alert(`You succummbed to arrows. You are dead! Next!!!! `)
+            // alert(`You succummbed to arrows. You are dead! Next!!!! `)
+            this.displayMessage("You succummbed to arrows. You are dead!");
             eventBus.$emit(`activePlayerDiedByArrows`);
             this.moveToNextPlayer();
           };
@@ -326,38 +335,48 @@ export default {
         dropableDiceLeft === false;
       };
       if(dropableDiceLeft === false) {
-        alert(`No more dice can be used. Your turn is over.`);
+        // alert(`No more dice can be used. Your turn is over.`);
+
+
+        setTimeout(() => { this.displayMessage("No more dice can be used. Your turn is over."); }, 2000);
+
         this.moveToNextPlayer();
       };
     },
     handleDrop0(data) {
       if(data.die === 'health') {
         if(this.players[0].currentHealth === this.players[0].maxHealth) {
-          alert(`The player is at full health`);
+          // alert(`The player is at full health`);
+          this.displayMessage("The player is at full health.");
         }
         else if (this.players[0].currentHealth === 0) {
-            alert('This player is deid ya numpty!');
+            // alert('This player is deid ya numpty!');
+            this.displayMessage("This player is deid ya numpty!");
         }
         else {
           this.players[0].currentHealth += 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Thanks for the health man!`);
+          // alert(`That feels good!`);
+          this.displayMessage("That feels good!");
         }
       };
 
       if(data.die === 'shoot1') {
         if(this.players[0].currentHealth === 0) {
-          alert(`The player is already deid`);
+          // alert(`The player is already deid`);
+          this.displayMessage("This player is already dead!");
         }
         else {
           this.players[0].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
           if(this.players[0].currentHealth <= 0) {
             this.players[0].currentHealth = 0;
-            alert(`Ya killed me ya no good dirty rat!`)
+            // alert(`Ya killed me ya no good dirty rat!`)
+            this.displayMessage("Ya killed me ya...");
             this.winConditions();
           } else {
-            alert(`Argh! You got me!`);
+            // alert(`Argh! You got me!`);
+            this.displayMessage("Argh! You got me!");
           }
         }
       };
@@ -367,31 +386,31 @@ export default {
     handleDrop1(data) {
       if(data.die === 'health') {
         if(this.players[1].currentHealth === this.players[1].maxHealth) {
-          alert(`The player is at full health`);
+          this.displayMessage(`The player is at full health`);
         }
         else if (this.players[1].currentHealth === 0) {
-            alert('This player is deid ya numpty!');
+            this.displayMessage('This player is deid ya numpty!');
         }
         else {
           this.players[1].currentHealth += 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Thanks for the health man!`);
+          this.displayMessage(`That feels good!`);
         }
       };
 
       if(data.die === 'shoot1') {
         if(this.players[1].currentHealth === 0) {
-          alert(`The player is already deid`);
+          this.displayMessage(`The player is already deid`);
         }
         else {
           this.players[1].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
           if(this.players[1].currentHealth <= 0) {
             this.players[1].currentHealth = 0;
-            alert(`Ya killed me ya no good dirty rat!`)
+            this.displayMessage(`Ya killed me ya no good dirty rat!`)
             this.winConditions();
           } else {
-            alert(`Argh! You got me!`);
+            this.displayMessage(`Argh! You got me!`);
           }
         }
       };
@@ -401,31 +420,31 @@ export default {
     handleDrop2(data) {
       if(data.die === 'health') {
         if(this.players[2].currentHealth === this.players[2].maxHealth) {
-          alert(`The player is at full health`);
+          this.displayMessage(`The player is at full health`);
         }
         else if (this.players[2].currentHealth === 0) {
-            alert('This player is deid ya numpty!');
+            this.displayMessage('This player is deid ya numpty!');
         }
         else {
           this.players[2].currentHealth += 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Thanks for the health man!`);
+          this.displayMessage(`That feels good!`);
         }
       };
 
       if(data.die === 'shoot1') {
         if(this.players[2].currentHealth === 0) {
-          alert(`The player is already deid`);
+          this.displayMessage(`The player is already deid`);
         }
         else {
           this.players[2].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
           if(this.players[2].currentHealth <= 0) {
             this.players[2].currentHealth = 0;
-            alert(`Ya killed me ya no good dirty rat!`)
+            this.displayMessage(`Ya killed me ya no good dirty rat!`)
             this.winConditions();
           } else {
-            alert(`Argh! You got me!`);
+            this.displayMessage(`Argh! You got me!`);
           }
         }
       };
@@ -435,31 +454,31 @@ export default {
     handleDrop3(data) {
       if(data.die === 'health') {
         if(this.players[3].currentHealth === this.players[3].maxHealth) {
-          alert(`The player is at full health`);
+          this.displayMessage(`The player is at full health`);
         }
         else if (this.players[3].currentHealth === 0) {
-          alert('This player is deid ya numpty!');
+          this.displayMessage('This player is deid ya numpty!');
         }
         else {
           this.players[3].currentHealth += 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Thanks for the health man!`);
+          this.displayMessage(`That feels good!`);
         }
       };
 
       if(data.die === 'shoot1') {
         if(this.players[3].currentHealth === 0) {
-          alert(`The player is already deid`);
+          this.displayMessage(`The player is already deid`);
         }
         else {
           this.players[3].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
           if(this.players[3].currentHealth <= 0) {
             this.players[3].currentHealth = 0;
-            alert(`Ya killed me ya no good dirty rat!`);
+            this.displayMessage(`Ya killed me ya no good dirty rat!`);
             this.winConditions();
           } else {
-            alert(`Argh! You got me!`);
+            this.displayMessage(`Argh! You got me!`);
           }
         };
 
@@ -469,31 +488,31 @@ export default {
     handleDrop4(data) {
       if(data.die === 'health') {
         if(this.players[4].currentHealth === this.players[4].maxHealth) {
-          alert(`The player is at full health`);
+          this.displayMessage(`The player is at full health`);
         }
         else if (this.players[4].currentHealth === 0) {
-            alert('This player is deid ya numpty!');
+            this.displayMessage('This player is deid ya numpty!');
         }
         else {
           this.players[4].currentHealth += 1;
           this.choosenDice.splice( data.index, 1 );
-          alert(`Thanks for the health man!`);
+          this.displayMessage(`That feels good!`);
         }
       };
 
       if(data.die === 'shoot1') {
         if(this.players[4].currentHealth === 0) {
-          alert(`The player is already deid`);
+          this.displayMessage(`The player is already deid`);
         }
         else {
           this.players[4].currentHealth -= 1;
           this.choosenDice.splice( data.index, 1 );
           if(this.players[4].currentHealth <= 0) {
             this.players[4].currentHealth = 0;
-            alert(`Ya killed me ya no good dirty rat!`);
+            this.displayMessage(`Ya killed me ya no good dirty rat!`);
             this.winConditions();
           } else {
-            alert(`Argh! You got me!`);
+            this.displayMessage(`Argh! You got me!`);
           };
         };
       };
@@ -505,21 +524,17 @@ export default {
 
 <style lang="css" scoped>
 
-.tray-enter,
-.tray-leave-to { opacity: 0 }
-
-.tray-leave,
-.tray-enter-to { opacity: 1 }
-
-.tray-enter-active,
-.tray-leave-active { transition: opacity 300ms }
+.fade-enter,
+.fade-leave-to { opacity: 0; }
+.fade-enter-active,
+.fade-leave-active { transition: opacity 2s ease; }
 
 .message-box {
 position: absolute;
 text-align:center;
-top: 25%;
+top: 700px;
 left: 50%;
-font-size: 48px;
+font-size: 64px;
 color: white;
 transform: translate(-50%,-50%);
 -ms-transform: translate(-50%,-50%);

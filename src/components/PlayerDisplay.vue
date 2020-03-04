@@ -534,7 +534,7 @@ position: absolute;
 text-align:center;
 top: 700px;
 left: 50%;
-font-size: 64px;
+font-size: 52px;
 color: white;
 transform: translate(-50%,-50%);
 -ms-transform: translate(-50%,-50%);

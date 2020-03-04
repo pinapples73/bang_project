@@ -142,6 +142,7 @@ export default {
 
 <style lang="css" scoped>
 
+
 #game_window {
   /* background-color: grey; */
   height: 100%;

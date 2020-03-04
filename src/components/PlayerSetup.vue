@@ -155,11 +155,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+
 #start-game{
   height: 840px;
   padding: 20px;
 }
 #enter-name{
+  font-family: 'colt';
   font-size: 25px;
   font-weight: bold;
   margin: auto;
@@ -250,7 +253,7 @@ export default {
 
 #playerName{
   width: 75%;
-  padding: 12px 20px;
+  padding: 5px 10px;
   margin: 8px 0;
   box-sizing: border-box;
   text-align: center;
@@ -263,8 +266,9 @@ export default {
 
 .char-image {
   width: 240px;
-  height: 200px;
+  height: 240px;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bart-cassidy {

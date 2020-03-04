@@ -5,14 +5,16 @@
     <div v-if="diceRoleComplete" :key="diceRoleComplete" id="player-div">
       <div>
         <drop class="drop" :players="players" @drop="handleDrop0">
-          <p>{{ players[0].character }}</p>
-          <p>Arrows: {{ players[0].arrowCount}}</p>
-          <p>Health: {{ players[0].currentHealth}}</p>
+          <span class="char-text">{{ players[0].character }}</span>
+          <span :class="`char-image ${players[0].className}`"> </span>
+          <span class="char-text">Arrows: {{ players[0].arrowCount}}</span>
+          <span class="char-text">Health: {{ players[0].currentHealth}}</span>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop1">
           <p>{{ players[1].character }}</p>
+          <p :class="`char-image ${players[1].className}`"> </p>
           <p>Arrows: {{ players[1].arrowCount}}</p>
           <p>Health: {{ players[1].currentHealth}}</p>
         </drop>
@@ -20,6 +22,7 @@
       <div>
         <drop class="drop" :players="players" @drop="handleDrop2">
           <p>{{ players[2].character }}</p>
+          <p :class="`char-image ${players[2].className}`"> </p>
           <p>Arrows: {{ players[2].arrowCount}}</p>
           <p>Health: {{ players[2].currentHealth}}</p>
         </drop>
@@ -27,6 +30,7 @@
       <div>
         <drop class="drop" :players="players" @drop="handleDrop3">
           <p>{{ players[3].character }}</p>
+          <p :class="`char-image ${players[3].className}`"> </p>
           <p>Arrows: {{ players[3].arrowCount}}</p>
           <p>Health: {{ players[3].currentHealth}}</p>
         </drop>
@@ -34,6 +38,7 @@
       <div>
         <drop class="drop" :players="players" @drop="handleDrop4">
           <p>{{ players[4].character }}</p>
+          <p :class="`char-image ${players[4].className}`"> </p>
           <p>Arrows: {{ players[4].arrowCount}}</p>
           <p>Health: {{ players[4].currentHealth}}</p>
         </drop>
@@ -43,26 +48,31 @@
     <div v-if="!diceRoleComplete" :key="diceRoleComplete" id="player-div2">
       <div class="drop">
         <p>{{ players[0].character }}</p>
+        <p :class="`char-image ${players[0].className}`"> </p>
         <p>Arrows: {{ players[0].arrowCount}}</p>
         <p>Health: {{ players[0].currentHealth}}</p>
       </div>
       <div class="drop">
         <p>{{ players[1].character }}</p>
+        <p :class="`char-image ${players[1].className}`"> </p>
         <p>Arrows: {{ players[1].arrowCount}}</p>
         <p>Health: {{ players[1].currentHealth}}</p>
       </div>
       <div class="drop">
         <p>{{ players[2].character }}</p>
+        <p :class="`char-image ${players[2].className}`"> </p>
         <p>Arrows: {{ players[2].arrowCount}}</p>
         <p>Health: {{ players[2].currentHealth}}</p>
       </div>
       <div class="drop">
         <p>{{ players[3].character }}</p>
+        <p :class="`char-image ${players[3].className}`"> </p>
         <p>Arrows: {{ players[3].arrowCount}}</p>
         <p>Health: {{ players[3].currentHealth}}</p>
       </div>
       <div class="drop">
         <p>{{ players[4].character }}</p>
+        <p :class="`char-image ${players[4].className}`"> </p>
         <p>Arrows: {{ players[4].arrowCount}}</p>
         <p>Health: {{ players[4].currentHealth}}</p>
       </div>
@@ -454,6 +464,54 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.char-image {
+  flex-grow: 2;
+  width: 120px;
+  height: 200px;
+  background-repeat:no-repeat;
+  background-size: contain;
+}
+
+#char-text {
+  display: flex;
+  flex-grow: 1;
+}
+
+.bart-cassidy {
+  background-image: url("../assets/images/bartcassidy.png");
+  border: 5px solid black;
+}
+
+.paul-regret {
+  background-image: url("../assets/images/paulregret.png");
+  border: 5px solid black;
+}
+
+.slab-the-killer {
+  background-image: url("../assets/images/Slabkiller.png");
+  border: 5px solid black;
+}
+
+.el-gringo {
+  background-image: url("../assets/images/elgringo.png");
+  border: 5px solid black;
+}
+
+.calamity-janet {
+  background-image: url("../assets/images/calamityjanet.png");
+  border: 5px solid black;
+}
+
+.rose-doolan {
+  background-image: url("../assets/images/rosedoolan.png");
+  border: 5px solid black;
+}
+
+.black-jack {
+  background-image: url("../assets/images/blackjack.png");
+  border: 5px solid black;
+}
+
 #player-div {
   display: flex;
   flex-direction: row;
@@ -529,20 +587,19 @@ export default {
   border-radius: 15px;
 }
 .drop {
-  display: inline-block;
-  vertical-align: top;
-  padding: 10px;
-  margin: 20px;
-  width: 125px;
-  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  width: 180px;
   height: 200px;
-  text-align: center;
-  border: 5px solid black;
+  border: 5px;
   border-radius: 15px;
   font-weight: bold;
-  background: rgba(9, 10, 9, 0.5);
+  background: rgba(195, 147, 80, 0.5);
   box-shadow: 0 0 25px 1px black;
-
 }
 .drop.allowed {
 		background-color: #dfd;
@@ -551,6 +608,5 @@ export default {
   height: 840px;
   padding: 20px;
 }
-
 
 </style>

@@ -252,36 +252,36 @@ export default {
       if (renegade.currentHealth >= 1) {
         if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0 && sheriff.currentHealth <= 0){
           result = "Renegade Wins";
-          this.displayFinalMessage(result);
-          setTimeout(() => { console.log('game over'); }, 5000);
+          setTimeout(() => { this.displayFinalMessage(result); }, 2000);
+          setTimeout(() => { console.log('game over'); }, 10000);
         }
       }
       if (sheriff.currentHealth >= 1) {
         if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
           result = "Law Wins";
-          this.displayFinalMessage(result);
-          setTimeout(() => { console.log('game over'); }, 5000);
+          setTimeout(() => { this.displayFinalMessage(result); }, 2000);
+          setTimeout(() => { console.log('game over'); }, 10000);
         }
       }
       if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
         if (outlaw.currentHealth >= 1 && renegade.currentHealth >= 1 && deputy.currentHealth >= 1){
           result = "Outlaw Wins";
-          this.displayFinalMessage(result);
-          setTimeout(() => { console.log('game over'); }, 5000);
+          setTimeout(() => { this.displayFinalMessage(result); }, 2000);
+          setTimeout(() => { console.log('game over'); }, 10000);
         }
       }
        if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
         if (renegade.currentHealth >= 1 && deputy.currentHealth >= 1 && outlaw.currentHealth <=0){
           result ="Outlaw Wins";
-          this.displayFinalMessage(result);
-          setTimeout(() => { console.log('game over'); }, 5000);
+          setTimeout(() => { this.displayFinalMessage(result); }, 2000);
+          setTimeout(() => { console.log('game over'); }, 10000);
         }
       }
       if(sheriff.currentHealth<= 0){
         if(renegade.currentHealth <= 0 && deputy.currentHealth <= 0 && outlaw.currentHealth <=0){
           result = "Draw";
-          this.displayFinalMessage(result);
-          setTimeout(() => { console.log('game over'); }, 5000);
+          setTimeout(() => { this.displayFinalMessage(result); }, 2000);
+          setTimeout(() => { console.log('game over'); }, 10000);
         }
       }
       return result;

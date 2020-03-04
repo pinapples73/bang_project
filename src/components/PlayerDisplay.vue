@@ -184,69 +184,62 @@ export default {
       this.winConditions();
     },
     winConditions(){
-
       let sheriff = null;
 
-      for(let player of this.players){
-        // debugger;
+      for(let player of this.players) {
         if(player.role === "sheriff"){
           sheriff = player;
-        }
-      }
-
+        };
+      };
       let outlaw = null;
-
       for(let player of this.players){
         if(player.role === "outlaw"){
           outlaw = player;
         }
       }
-
       let renegade = null;
-
       for(let player of this.players){
         if(player.role === "renegade"){
           renegade = player;
         }
       }
-
       let deputy = null;
-
       for(let player of this.players){
-        if(player.roll === "deputy"){
+        if(player.role === "deputy"){
           deputy = player;
         }
       }
-
-
       let result = "";
-
-      if (sheriff.currentHealth <= 0){
-        if (outlaw.currentHealth>0){
-          result = "Outlaw Wins";
-          alert(`Outlaws Win`);
-        }
-      }
-
-      if (sheriff.currentHealth <= 0){
-        if (renegade.currentHealth > 0 && deputy.currentHealth>0){
-          result ="Outlaw Wins";
-          alert(`Outlaws Win`);
-        }
-      }
-      if (sheriff.currentHealth <= 0) {
-        if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0){
+      if (renegade.currentHealth >= 1) {
+        if (outlaw.currentHealth <= 0 && deputy.currentHealth <= 0 && sheriff.currentHealth <= 0){
           result = "Renegade Wins";
-          alert(`Renegade Wins`);
+          alert('Renegade Wins');
         }
       }
-      if (sheriff.currentHealth > 0) {
+      if (sheriff.currentHealth >= 1) {
         if (outlaw.currentHealth <= 0 && renegade.currentHealth <= 0){
           result = "Law Wins";
-          alert(`Law Win`);
+          alert('Law Win');
         }
       }
-
+      if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
+        if (outlaw.currentHealth >= 1 && renegade.currentHealth >= 1 && deputy.currentHealth >= 1){
+          result = "Outlaw Wins";
+          alert('Outlaws Win');
+        }
+      }
+       if (sheriff.currentHealth <= 0 && result !== "Outlaw Wins"){
+        if (renegade.currentHealth >= 1 && deputy.currentHealth >= 1 && outlaw.currentHealth <=0){
+          result ="Outlaw Wins";
+          alert('Outlaws Win');
+        }
+      }
+      if(sheriff.currentHealth<= 0){
+        if(renegade.currentHealth <= 0 && deputy.currentHealth <= 0 && outlaw.currentHealth <=0){
+          result = "Draw";
+          alert('Violence is not the answer ! ')
+        }
+      }
       return result;
     },
     checkMainArrowSupply(){

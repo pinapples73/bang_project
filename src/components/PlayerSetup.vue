@@ -13,19 +13,6 @@
         <input type="text" id="playerName" name="playerName" v-model="players[currentPlayer].name" required/>
       </div>
 
-      <!-- This stays hidden until you click Create Character button -->
-      <!-- if chcks if variable NameEntered is true and if it is it displays
-      the div-->
-      <div id="assigned-char" v-if="nameEntered" :key="nameEntered">
-        <h3>{{players[currentPlayer].character}}</h3>
-        <div :class="`char-image ${players[currentPlayer].className}`"> </div>
-        <br>Max Health: {{players[currentPlayer].maxHealth}}</br>
-        <!-- <p>Special Ability: {{players[currentPlayer].special}}</p> -->
-        <p>Role: {{players[currentPlayer].role}}</p>
-        <!-- <img :src="players[currentPlayer].picture" /> -->
-        <!-- <div :class="`char-image ${players[currentPlayer].className}`"> </div> -->
-      </div>
-
       <!-- This is the Create Character button. similar to above the div will
       display depending on the value of nameEntered. In this instance if its
       false it will display-->
@@ -37,6 +24,19 @@
       true it will display-->
       <div  v-if="nameEntered" :key="nameEntered">
         <button id="next-player" type="button" name="button" v-on:click="handleNextPlayer">Next Player</button>
+      </div>
+
+      <!-- This stays hidden until you click Create Character button -->
+      <!-- if chcks if variable NameEntered is true and if it is it displays
+      the div-->
+      <div id="assigned-char" v-if="nameEntered" :key="nameEntered">
+        <h3>{{players[currentPlayer].character}}</h3>
+        <div :class="`char-image ${players[currentPlayer].className}`"> </div>
+        <br>Max Health: {{players[currentPlayer].maxHealth}}</br>
+        <!-- <p>Special Ability: {{players[currentPlayer].special}}</p> -->
+        <p>Role: {{players[currentPlayer].role}}</p>
+        <!-- <img :src="players[currentPlayer].picture" /> -->
+        <!-- <div :class="`char-image ${players[currentPlayer].className}`"> </div> -->
       </div>
     </div>
     <!-- This div states that setup is complete and will display when currentPlayer is
@@ -218,6 +218,7 @@ export default {
   background-color: rgba(100, 100, 100, 0.5);
   border: 5px solid grey;
 }
+
 #name-enter:hover{
   width: 120px;
   height: 80px;
@@ -233,6 +234,7 @@ export default {
   width: 120px;
   height: 80px;
   margin-top: 15px;
+  margin-bottom: 15px;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;
@@ -244,6 +246,7 @@ export default {
   width: 120px;
   height: 80px;
   margin-top: 15px;
+  margin-bottom: 15px;
   border-radius: 11px;
   box-shadow: 0 0 25px 1px black;
   font-size: 20px;

@@ -5,40 +5,50 @@
     <div v-if="diceRoleComplete" :key="diceRoleComplete" id="player-div">
       <div>
         <drop class="drop" :players="players" @drop="handleDrop0">
-          <p>{{ players[0].character }}</p>
-          <p :class="`char-image ${players[1].className}`"> </p>
+          <p v-if="players[0].role != 'sheriff'">{{ players[0].character }}</p>
+          <p v-if="players[0].role === 'sheriff'">⭐️ {{ players[0].character }} ⭐️</p>
+          <p v-if="activePlayer === 0" :style="'border: 10px solid orange;'" :class="`char-image ${players[0].className}`"> </p>
+          <p v-if="activePlayer != 0" :class="`char-image ${players[0].className}`"> </p>
           <p>Arrows: {{ players[0].arrowCount}}</p>
           <p>Health: {{ players[0].currentHealth}}</p>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop1">
-          <p>{{ players[1].character }}</p>
-          <p :class="`char-image ${players[1].className}`"> </p>
+          <p v-if="players[1].role != 'sheriff'">{{ players[1].character }}</p>
+          <p v-if="players[1].role === 'sheriff'">⭐️ {{ players[1].character }} ⭐️</p>
+          <p v-if="activePlayer === 1" :style="'border: 10px solid orange;'" :class="`char-image ${players[1].className}`"> </p>
+          <p v-if="activePlayer != 1" :class="`char-image ${players[1].className}`"> </p>
           <p>Arrows: {{ players[1].arrowCount}}</p>
           <p>Health: {{ players[1].currentHealth}}</p>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop2">
-          <p>{{ players[2].character }}</p>
-          <p :class="`char-image ${players[2].className}`"> </p>
+          <p v-if="players[2].role != 'sheriff'">{{ players[2].character }}</p>
+          <p v-if="players[2].role === 'sheriff'">⭐️ {{ players[2].character }} ⭐️</p>
+          <p v-if="activePlayer === 2" :style="'border: 10px solid orange;'" :class="`char-image ${players[2].className}`"> </p>
+          <p v-if="activePlayer != 2" :class="`char-image ${players[2].className}`"> </p>
           <p>Arrows: {{ players[2].arrowCount}}</p>
           <p>Health: {{ players[2].currentHealth}}</p>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop3">
-          <p>{{ players[3].character }}</p>
-          <p :class="`char-image ${players[3].className}`"> </p>
+          <p v-if="players[3].role != 'sheriff'">{{ players[3].character }}</p>
+          <p v-if="players[3].role === 'sheriff'">⭐️ {{ players[3].character }} ⭐️</p>
+          <p v-if="activePlayer === 3" :style="'border: 10px solid orange;'" :class="`char-image ${players[3].className}`"> </p>
+          <p v-if="activePlayer != 3" :class="`char-image ${players[3].className}`"> </p>
           <p>Arrows: {{ players[3].arrowCount}}</p>
           <p>Health: {{ players[3].currentHealth}}</p>
         </drop>
       </div>
       <div>
         <drop class="drop" :players="players" @drop="handleDrop4">
-          <p>{{ players[4].character }}</p>
-          <p :class="`char-image ${players[4].className}`"> </p>
+          <p v-if="players[4].role != 'sheriff'">{{ players[4].character }}</p>
+          <p v-if="players[4].role === 'sheriff'">⭐️ {{ players[4].character }} ⭐️</p>
+          <p v-if="activePlayer === 4" :style="'border: 10px solid orange;'" :class="`char-image ${players[4].className}`"> </p>
+          <p v-if="activePlayer != 4" :class="`char-image ${players[4].className}`"> </p>
           <p>Arrows: {{ players[4].arrowCount}}</p>
           <p>Health: {{ players[4].currentHealth}}</p>
         </drop>
@@ -47,32 +57,42 @@
 
     <div v-if="!diceRoleComplete" :key="diceRoleComplete" id="player-div2">
       <div class="drop">
-        <p>{{ players[0].character }}</p>
-        <p :class="`char-image ${players[0].className}`"> </p>
+        <p v-if="players[0].role != 'sheriff'">{{ players[0].character }}</p>
+        <p v-if="players[0].role === 'sheriff'">⭐️ {{ players[0].character }} ⭐️</p>
+        <p v-if="activePlayer === 0" :style="'border: 10px solid orange;'" :class="`char-image ${players[0].className}`"> </p>
+        <p v-if="activePlayer != 0" :class="`char-image ${players[0].className}`"> </p>
         <p>Arrows: {{ players[0].arrowCount}}</p>
         <p>Health: {{ players[0].currentHealth}}</p>
       </div>
       <div class="drop">
-        <p>{{ players[1].character }}</p>
-        <p :class="`char-image ${players[1].className}`"> </p>
+        <p v-if="players[1].role != 'sheriff'">{{ players[1].character }}</p>
+        <p v-if="players[1].role === 'sheriff'">⭐️ {{ players[1].character }} ⭐️</p>
+        <p v-if="activePlayer === 1" :style="'border: 10px solid orange;'" :class="`char-image ${players[1].className}`"> </p>
+        <p v-if="activePlayer != 1" :class="`char-image ${players[1].className}`"> </p>
         <p>Arrows: {{ players[1].arrowCount}}</p>
         <p>Health: {{ players[1].currentHealth}}</p>
       </div>
       <div class="drop">
-        <p>{{ players[2].character }}</p>
-        <p :class="`char-image ${players[2].className}`"> </p>
+        <p v-if="players[2].role != 'sheriff'">{{ players[2].character }}</p>
+        <p v-if="players[2].role === 'sheriff'">⭐️ {{ players[2].character }} ⭐️</p>
+        <p v-if="activePlayer === 2" :style="'border: 10px solid orange;'" :class="`char-image ${players[2].className}`"> </p>
+        <p v-if="activePlayer != 2" :class="`char-image ${players[2].className}`"> </p>
         <p>Arrows: {{ players[2].arrowCount}}</p>
         <p>Health: {{ players[2].currentHealth}}</p>
       </div>
       <div class="drop">
-        <p>{{ players[3].character }}</p>
-        <p :class="`char-image ${players[3].className}`"> </p>
+        <p v-if="players[3].role != 'sheriff'">{{ players[3].character }}</p>
+        <p v-if="players[3].role === 'sheriff'">⭐️ {{ players[3].character }} ⭐️</p>
+        <p v-if="activePlayer === 3" :style="'border: 10px solid orange;'" :class="`char-image ${players[3].className}`"> </p>
+        <p v-if="activePlayer != 3" :class="`char-image ${players[3].className}`"> </p>
         <p>Arrows: {{ players[3].arrowCount}}</p>
         <p>Health: {{ players[3].currentHealth}}</p>
       </div>
       <div class="drop">
-        <p>{{ players[4].character }}</p>
-        <p :class="`char-image ${players[4].className}`"> </p>
+        <p v-if="players[4].role != 'sheriff'">{{ players[4].character }}</p>
+        <p v-if="players[4].role === 'sheriff'">⭐️ {{ players[4].character }} ⭐️</p>
+        <p v-if="activePlayer === 4" :style="'border: 10px solid orange;'" :class="`char-image ${players[4].className}`"> </p>
+        <p v-if="activePlayer != 4" :class="`char-image ${players[4].className}`"> </p>
         <p>Arrows: {{ players[4].arrowCount}}</p>
         <p>Health: {{ players[4].currentHealth}}</p>
       </div>
@@ -270,10 +290,12 @@ export default {
       this.diceRoleComplete = false;
     },
     dropableDiceCheck() {
+
       let dropableDiceLeft = false;
       let allAtFullHealth = true;
+
       for(const dice of this.choosenDice){
-        if(dice === 'health' || dice === 'shoot1') {
+        if(dice === 'health') {
           for(const player of this.players) {
             if(player.currentHealth !== player.maxHealth ) {
               allAtFullHealth = false;
@@ -281,10 +303,14 @@ export default {
           };
           dropableDiceLeft = true;
         };
+
+        if(dice === 'shoot1') {
+          dropableDiceLeft = true;
+        }
       };
-      // if(allAtFullHealth === true && this.dice === 'health') {
-      //   dropableDiceLeft === false;
-      // };
+      if(allAtFullHealth === true && this.dice === 'health') {
+        dropableDiceLeft === false;
+      };
       if(dropableDiceLeft === false) {
         alert(`No more dice can be used. Your turn is over.`);
         this.moveToNextPlayer();
@@ -520,8 +546,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: baseline;
-  height: 500px;
+  align-items: flex-end;
+  height: 400px;
 }
 .drag {
   display: inline-block;

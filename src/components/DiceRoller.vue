@@ -1,34 +1,44 @@
 <template>
 	<div>
-		<div>
-			<p id="count-box":key="refreshFlag">Rolls Left: {{ rollsLeft }}   Dynamite Count: {{totalDynamiteRolled}}</p>
-			<div v-for="(list, index) in dice_bags" :key="refreshFlag">
-				<drop class="drop list" @drop="handleDrop(list, ...arguments)">
-					<div v-if="rollsLeft === 3">
-						<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
-							<!-- {{ item }} -->
-						</drag>
-					</div>
-					<div v-else-if="rollsLeft === 0">
-						<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
-							<!-- {{ item }} -->
-						</drag>
-					</div>
-					<div v-else>
-						<drag v-for="(item, index) in list" class="drag" :class="{ [item]: true }" :draggable="true" :key="index" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
-							<!-- {{ item }} -->
-						</drag>
-					</div>
-				</drop>
+		<div id="dice-roller">
+			<div id="counters1" :key="refreshFlag">
+				<br>Rolls<br>Left: {{ rollsLeft }}</br></br>
+				<hr>
+				<br>Dynamite<br>Count: {{totalDynamiteRolled}}</br></br>
+
+			</div>
+			<div id="dice-trays">
+				<p id="message-box">Message box</p>
+
+				<div v-for="(list, index) in dice_bags" :key="refreshFlag">
+					<drop class="drop list" @drop="handleDrop(list, ...arguments)">
+						<div v-if="rollsLeft === 3">
+							<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+								<!-- {{ item }} -->
+							</drag>
+						</div>
+						<div v-else-if="rollsLeft === 0">
+							<drag v-for="(item, index) in list" class="drag" :key="index" :class="{ [item]: true }" :draggable="false" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+								<!-- {{ item }} -->
+							</drag>
+						</div>
+						<div v-else>
+							<drag v-for="(item, index) in list" class="drag" :class="{ [item]: true }" :draggable="true" :key="index" :transfer-data="{ item: item, list: list, example: 'dice_bags' }">
+								<!-- {{ item }} -->
+							</drag>
+						</div>
+					</drop>
+				</div>
+
 			</div>
 			<div id="buttons">
-			<div>
-				<button id="rollbtn" v-if="rollsLeft > 0" type=button class="roll" v-on:click ="rollAll">Roll Dice</button>
+				<div>
+					<button id="rollbtn" v-if="rollsLeft > 0" type=button class="roll" v-on:click ="rollAll">Roll Dice</button>
+				</div>
+				<div>
+					<button id="finishbtn" v-if="rollsLeft <= 2" type=button class="finish" v-on:click ="finishRolling">Finish Rolling</button>
+				</div>
 			</div>
-			<div>
-				<button id="finishbtn" v-if="rollsLeft <= 2" type=button class="finish" v-on:click ="finishRolling">Finish Rolling</button>
-			</div>
-		</div>
 		</div>
 	</div>
 </template>
@@ -146,6 +156,39 @@
 </script>
 
 <style scoped>
+	#message-box{
+		color: white;
+		font-size: 30px;
+		text-align: center;
+	}
+	#dice-roller {
+		display: flex;
+		flex-direction: row;
+	}
+
+	#dice-trays {
+		display:flex;
+		flex-direction: column;
+
+		margin-top: 60px;
+	}
+	#counters1{
+		display:flex;
+		flex-direction: column;
+		font-size: 47px;
+		color: #990033;
+		width: 200px;
+		flex-wrap: wrap;
+		margin-top:180px;
+		margin-right: 50px;
+	}
+	#buttons{
+		display:flex;
+		flex-direction: column;
+		width: 200px;
+		align-self: center;
+	}
+
 	.drag {
 		display: inline-block;
 		vertical-align: top;
@@ -204,8 +247,6 @@
 			margin-right: 5px;
 			border-radius: 15px;}
 	.drop {
-		display: inline-block;
-		vertical-align: top;
 		padding: 10px;
 		margin: 20px;
 		width: 600px;
@@ -215,8 +256,6 @@
 		border-radius: 15px;
 		height: 100px;
     text-align: center;
-
-
 	}
 	#rollbtn{
 		width: 120px;
@@ -266,7 +305,7 @@
 			justify-content: center
 		}
 
-		#count-box{
+		/* #count-box{
 
 			background: rgba(9, 10, 9, 0.5);
 		  box-shadow: 0 0 25px 1px black;
@@ -281,6 +320,6 @@
 			display: flex;
  			justify-content: center;
  			align-items: center;
-		}
+		} */
 
 </style>

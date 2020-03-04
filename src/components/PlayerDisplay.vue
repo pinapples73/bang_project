@@ -114,9 +114,16 @@
           @dragend="dragging = null">
           </drag>
       </div>
-      <p id="standardText">Assign your dice pardner!</p>
+      <p id="standardText">Assign your dice partner!</p>
     </div>
   </div>
+
+  <transition name="tray">
+    <div v-if="messageUpdate" class="message-box" >
+      {{messageText}}
+    </div>
+  </transition>
+
 </div>
 
 </template>
@@ -151,16 +158,25 @@ export default {
       };
       this.checkMainArrowSupply();
     });
+
+    this.displayMessage('Hi!');
+
   },
   data () {
     return {
       choosenDice: null,
       diceRoleComplete: false,
       activePlayer:0,
-      mainArrowSupply: 5
+      mainArrowSupply: 5,
+      messageText: '',
+      messageUpdate: false
     }
   },
   methods: {
+    displayMessage(text) {
+      this.messageText = text;
+      this.messageUpdate = true;
+    },
     checkForThreeGatlins(){
       let gatlinCount = 0;
       for(const die of this.choosenDice) {
@@ -489,6 +505,30 @@ export default {
 
 <style lang="css" scoped>
 
+.tray-enter,
+.tray-leave-to { opacity: 0 }
+
+.tray-leave,
+.tray-enter-to { opacity: 1 }
+
+.tray-enter-active,
+.tray-leave-active { transition: opacity 300ms }
+
+.message-box {
+position: absolute;
+text-align:center;
+top: 25%;
+left: 50%;
+font-size: 48px;
+color: white;
+transform: translate(-50%,-50%);
+-ms-transform: translate(-50%,-50%);
+-webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: black;
+}
+
+
+
 #dragDice {
   padding: 10px;
   margin: 20px;
@@ -513,6 +553,24 @@ export default {
   color: #990033;
   text-shadow: 3px 3px #ffffff;
   text-align: center;
+}
+
+#player-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#player-div2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#dice-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
 }
 
 .char-image {
@@ -557,23 +615,6 @@ export default {
   border: 5px solid black;
 }
 
-#player-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-#player-div2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-#dice-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 400px;
-}
 .drag {
   display: inline-block;
   vertical-align: top;

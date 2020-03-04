@@ -8,7 +8,6 @@
 
 			</div>
 			<div id="dice-trays">
-				<p id="message-box">Message box</p>
 
 				<div v-for="(list, index) in dice_bags" :key="refreshFlag">
 					<drop class="drop list" @drop="handleDrop(list, ...arguments)">
@@ -169,8 +168,7 @@
 	#dice-trays {
 		display:flex;
 		flex-direction: column;
-
-		margin-top: 60px;
+		align-items: center;
 	}
 	#counters1{
 		display:flex;
@@ -179,7 +177,7 @@
 		color: #990033;
 		width: 200px;
 		flex-wrap: wrap;
-		margin-top:180px;
+		/* margin-top:180px; */
 		margin-right: 50px;
 		text-shadow: 3px 3px #ffffff;
 	}
@@ -306,21 +304,5 @@
 			justify-content: center
 		}
 
-		/* #count-box{
-
-			background: rgba(9, 10, 9, 0.5);
-		  box-shadow: 0 0 25px 1px black;
-			border: 5px solid black;
-			border-radius: 15px;
-			height: 50px;
-			text-align: center;
-			font-size: 30px;
-			font-weight: bold;
-			padding: 1% ;
-			vertical-align: middle;
-			display: flex;
- 			justify-content: center;
- 			align-items: center;
-		} */
 
 </style>

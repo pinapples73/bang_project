@@ -5,10 +5,10 @@
     <div v-if="diceRoleComplete" :key="diceRoleComplete" id="player-div">
       <div>
         <drop class="drop" :players="players" @drop="handleDrop0">
-          <span class="char-text">{{ players[0].character }}</span>
-          <span :class="`char-image ${players[0].className}`"> </span>
-          <span class="char-text">Arrows: {{ players[0].arrowCount}}</span>
-          <span class="char-text">Health: {{ players[0].currentHealth}}</span>
+          <p>{{ players[0].character }}</p>
+          <p :class="`char-image ${players[1].className}`"> </p>
+          <p>Arrows: {{ players[0].arrowCount}}</p>
+          <p>Health: {{ players[0].currentHealth}}</p>
         </drop>
       </div>
       <div>
@@ -88,7 +88,7 @@
         :transfer-data="{ die, index } "
         @dragstart="dragging = die"
         @dragend="dragging = null">
-        {{ die }}
+        <!-- {{ die }} -->
       </drag>
     </div>
   </div>
@@ -465,16 +465,10 @@ export default {
 
 <style lang="css" scoped>
 .char-image {
-  flex-grow: 2;
-  width: 120px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   background-repeat:no-repeat;
-  background-size: contain;
-}
-
-#char-text {
-  display: flex;
-  flex-grow: 1;
+  background-size: cover;
 }
 
 .bart-cassidy {
@@ -593,11 +587,11 @@ export default {
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
-  width: 180px;
-  height: 200px;
+  width: 200px;
+  height: auto;
   border: 5px;
   border-radius: 15px;
-  font-weight: bold;
+  font-size: 20px;
   background: rgba(195, 147, 80, 0.5);
   box-shadow: 0 0 25px 1px black;
 }

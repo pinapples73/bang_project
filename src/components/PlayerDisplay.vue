@@ -2,6 +2,7 @@
 
   <div id="whole-game">
 
+
     <div v-if="diceRoleComplete" :key="diceRoleComplete" id="player-div">
       <div>
         <drop class="drop" :players="players" @drop="handleDrop0">
@@ -54,6 +55,8 @@
         </drop>
       </div>
     </div>
+
+    <p id="arrow-supply">Arrow Supply: {{mainArrowSupply}}</p>
 
     <div v-if="!diceRoleComplete" :key="diceRoleComplete" id="player-div2">
       <div class="drop">
@@ -490,6 +493,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#arrow-supply{
+  font-size: 47px;
+  color: #990033;
+  text-shadow: 3px 3px #ffffff;
+  text-align: center;
+}
+
 .char-image {
   width: 160px;
   height: 160px;
@@ -625,7 +636,7 @@ export default {
 		background-color: #dfd;
 }
 #whole-game{
-  height: 840px;
+  height: 1100px;
   padding: 20px;
 }
 

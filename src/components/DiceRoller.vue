@@ -181,6 +181,7 @@
 		flex-wrap: wrap;
 		margin-top:180px;
 		margin-right: 50px;
+		text-shadow: 3px 3px #ffffff;
 	}
 	#buttons{
 		display:flex;

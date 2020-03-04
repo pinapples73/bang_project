@@ -158,7 +158,7 @@ export default {
 
 
 #start-game{
-  height: 840px;
+  height: 1100px;
   padding: 20px;
 }
 #enter-name{
